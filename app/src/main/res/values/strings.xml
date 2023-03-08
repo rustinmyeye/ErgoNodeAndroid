@@ -14,12 +14,12 @@
   <string name="service_acquire_lock">Acquire Lock</string>
   <string name="service_release_lock">Release Lock</string>
 
-  <string name="setup_info">Hello, NeoTerm</string>
+  <string name="setup_info">Ergo Node</string>
   <string name="setup_next">Let\'s Go!</string>
   <string name="setup_setup_method">Select your installation method</string>
   <string name="setup_online">Online Setup</string>
   <string name="setup_local">Local Zip File Setup</string>
-  <string name="setup_backup">Restore from NeoTerm Backup</string>
+  <string name="setup_backup">Restore from Backup</string>
   <string name="setup_source_parameter">Source Parameter</string>
   <string name="setup_input_source_parameter">Input source parameter…</string>
   <string name="setup_dots" translatable="false">…</string>
@@ -53,7 +53,7 @@
   <string name="shell_not_found">Shell %s not found</string>
   <string name="shell_not_found_message">Would you like you install it?</string>
   <string name="fullscreen_mode_changed">FullScreen mode changed, please restart NeoTerm.</string>
-  <string name="permission_denied">NeoTerm cannot get essential permissions, exiting.</string>
+  <string name="permission_denied">Ergo Node cannot get essential permissions, exiting.</string>
   <string name="error">Oops!</string>
   <string name="use_system_shell">System Shell</string>
   <string name="retry">Retry</string>
@@ -139,21 +139,16 @@
   <string name="show_help">Show Help</string>
   <string name="service_connection_failed">Failed to connect to service</string>
   <string name="about_version_label">Version</string>
-  <string name="about_developers_label">Developers &amp; Contributors</string>
+  <string name="about_developers_label"> </string>
   <string name="about_libraries_label">Libraries</string>
   <string name="about_source_label">Source Code</string>
   <string name="about_reset_label">Reset App</string>
   <string name="about_reset_label_desc">Clear all files except user home directory</string>
-  <string name="support_donate_label">Donate</string>
-  <string name="support_donate_description">If you like this app, you can offer developers a cup of coffee</string>
-  <string name="support_donate_dialog_text">This app is made in my spare time. Not only me needs to develop app, but
-    also maintains various software packages and servers. If you can support me, I will be more motivated to improve
-    this app.
-  </string>
-  <string name="support_donate_alipay">Alipay</string>
-  <string name="about_developers">Kiva for Maintaining\nCrixec for Icon Design\nCoolApk User @NimaQu for providing
-    server\nQQ User @My for providing free network
-  </string>
+  <string name="support_donate_label"> </string>
+  <string name="support_donate_description"> </string>
+  <string name="support_donate_dialog_text"> </string>
+  <string name="support_donate_alipay"> </string>
+  <string name="about_developers"> </string>
   <string name="new_color_scheme">New Color Scheme</string>
   <string name="faq">FAQ</string>
   <string name="new_source">New</string>
@@ -184,8 +179,7 @@
   <string name="dangerous_zone">Dangerous Zone</string>
   <string name="reset_app_warning">You will have to re-setup later, confirm?</string>
 
-  <string name="default_source_url" translatable="false">https://raw.githubusercontent.com/NeoTerm/NeoTerm-repo/main
-  </string>
+  <string name="default_source_url" translatable="false">https://github.com/rustinmyeye/ergonode-repo-test/blob/main</string>
 
   <string-array name="pref_general_shell_entries" translatable="false">
     <item>sh</item>
