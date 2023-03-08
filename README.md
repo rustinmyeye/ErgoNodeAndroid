@@ -4,6 +4,9 @@ Ergo Node
 A fork of NeoTerm. An attempt at a one click Ergo node app for Android. 
 
 
+![alt text](https://github.com/rustinmyeye/ErgoNode/blob/master/artwork/ergo-small.png?raw=true)
+
+
 NeoTerm
 =======
 [![Travis build status](https://travis-ci.org/NeoTerm/NeoTerm.svg?branch=master)](https://travis-ci.org/NeoTerm/NeoTerm)
