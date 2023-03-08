@@ -1,3 +1,9 @@
+Ergo Node
+=======
+
+A fork of NeoTerm. An attempt at a one click Ergo node app for Android. 
+
+
 NeoTerm
 =======
 [![Travis build status](https://travis-ci.org/NeoTerm/NeoTerm.svg?branch=master)](https://travis-ci.org/NeoTerm/NeoTerm)
