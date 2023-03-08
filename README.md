@@ -1,4 +1,4 @@
-Ergo Node
+Ergo Node for Android
 =======
 
 A fork of NeoTerm. An attempt at a one click Ergo node app for Android. 
