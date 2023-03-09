@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="32dp"
+                android:layout_margin="1dp"
                 android:orientation="vertical">
 
   <TextView
@@ -10,26 +12,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginBottom="26dp"
     android:layout_marginTop="26dp"
+    android:layout_marginBottom="26dp"
     android:gravity="center"
     android:text="@string/setup_info"
-    android:textColor="@color/colorAccent"
-    android:textSize="32sp"/>
-
-  <TextView
-    android:id="@+id/select_method_tip_text"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/setup_title_text"
-    android:text="@string/setup_setup_method"/>
+    android:textColor="@color/terminal_background"
+    android:textSize="32sp"
+    android:visibility="invisible"
+    tools:visibility="invisible"/>
 
   <Button
     android:id="@+id/setup_next"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:text="@string/setup_next"/>
+    android:fontFamily="@font/prompt_medium"
+    android:text="@string/setup_next"
+    android:textAllCaps="false"/>
 
   <LinearLayout
     android:layout_width="match_parent"
@@ -44,54 +43,70 @@
       android:layout_height="wrap_content"
       android:checkedButton="@id/setup_method_online">
 
-      <RadioButton
-        android:id="@+id/setup_method_online"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/setup_online"/>
-
-      <RadioButton
-        android:id="@+id/setup_method_local"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/setup_local"/>
-
-      <RadioButton
-        android:id="@+id/setup_method_backup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/setup_backup"/>
-
     </RadioGroup>
-
-    <TextView
-      android:id="@+id/setup_url_tip_text"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:text="@string/setup_source_parameter"/>
 
     <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal">
+      android:layout_height="7dp"
+      android:orientation="horizontal"
+      android:visibility="invisible"
+      tools:visibility="invisible">
 
       <EditText
         android:id="@+id/setup_source_parameter"
-        android:layout_width="0dp"
+        android:layout_width="176dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.0"
-        android:focusable="false"
         android:clickable="false"
+        android:focusable="false"
         android:hint="@string/setup_hint_online"
-        android:text="@string/default_source_url"/>
+        android:text="@string/default_source_url"
+        android:visibility="invisible"/>
 
       <Button
         android:id="@+id/setup_source_parameter_select"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
-        android:text="@string/setup_dots"/>
+        android:text="@string/setup_dots"
+        android:visibility="invisible"
+        tools:visibility="invisible"/>
+
+      <TextView
+        android:id="@+id/select_method_tip_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/setup_setup_method"
+        android:visibility="invisible"/>
+
+      <RadioButton
+        android:id="@+id/setup_method_online"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/setup_online"
+        android:visibility="invisible"/>
+
+      <RadioButton
+        android:id="@+id/setup_method_local"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/setup_local"
+        android:visibility="invisible"/>
+
+      <RadioButton
+        android:id="@+id/setup_method_backup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/setup_backup"
+        android:visibility="invisible"/>
+
+      <TextView
+        android:id="@+id/setup_url_tip_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/setup_source_parameter"
+        android:visibility="invisible"/>
 
     </LinearLayout>
 
@@ -107,5 +122,24 @@
     </ScrollView>
 
   </LinearLayout>
+
+  <ImageView
+    android:id="@+id/imageView8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="0dp"
+    android:layout_marginTop="58dp"
+    app:srcCompat="@mipmap/ic_launcher_neoterm_round"/>
+
+  <ImageView
+    android:id="@+id/imageView9"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="106dp"
+    app:srcCompat="@drawable/banner"/>
 
 </RelativeLayout>
