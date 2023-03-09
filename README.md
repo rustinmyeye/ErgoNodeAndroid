@@ -1,7 +1,7 @@
 Ergo Node for Android
 =======
 
-A fork of NeoTerm. An attempt at a one click Ergo node app for Android. 
+A fork of NeoTerm. An attempt at a one click Ergo node app for Android. I'm not sure what im doing...
 
 
 ![alt text](https://github.com/rustinmyeye/ErgoNode/blob/master/artwork/ergo-small.png?raw=true)
