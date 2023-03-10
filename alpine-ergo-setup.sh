@@ -1,13 +1,16 @@
 #!/bin/bash
 
 #create alpine-ergo.sh setup plugin for proot-distro
-cd data/data/io.neoterm/files/usr/etc/proot-distro
+cd ..
+cd usr
+cd etc
+cd proot-distro
 echo "
 ##
 ## Plug-in for installing Alpine Linux for Ergo Node.
 ##
 
-DISTRO_NAME="Alpine-Ergo"
+DISTRO_NAME="alpine-ergo"
 
 # You can override a CPU architecture to let distribution
 # be executed by QEMU (user-mode).
@@ -69,10 +72,10 @@ distro_setup() {
 
 #install alpine for ergo node with custom plugin
 
-Proot-distro install Alpine-Ergo
+Proot-distro install alpine-ergo
 
 #start alpine
 
-proot-distro login Alpine-Ergo
+proot-distro login alpine-ergo
 
 
