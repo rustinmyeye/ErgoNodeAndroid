@@ -57,8 +57,6 @@ get_download_url() {
 # Define here additional steps which should be executed
 # for configuration.
 distro_setup() {
-        # Hint: $PWD is the distribution rootfs directory.
-        #echo "hello world" > ./etc/motd
 
         # Run command within proot'ed environment with
         # run_proot_cmd function.
