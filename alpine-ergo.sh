@@ -31,7 +31,6 @@ get_download_url() {
 
 
 distro_setup() {
-        run_proot_cmd apk upgrade
         run_proot_cmd apk add openjdk11
         run_proot_cmd apk add wget
         run_proot_cmd apk add python3
