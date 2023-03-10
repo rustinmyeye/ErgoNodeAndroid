@@ -27,11 +27,3 @@ get_download_url() {
 
         echo "${sha256}|${rootfs}"
 }
-
-
-
-distro_setup() {
-        run_proot_cmd apk add openjdk11
-        run_proot_cmd apk add wget
-        run_proot_cmd apk add python3
-}
