@@ -1,12 +1,10 @@
 DISTRO_NAME="alpine-ergo"
 
-DISTRO_ARCH=aarch64
-
 DISTRO_COMMENT="Alpine Linux setup for Ergo Node"
 
-TARBALL_URL['aarch64']="https://github.com/termux/proot-distro/releases/download/v1.2-alpine-rootfs/alpine-minirootfs-3.13.1-aarch64.tar.gz"
+TARBALL_URL="https://github.com/termux/proot-distro/releases/download/v1.2-alpine-rootfs/alpine-minirootfs-3.13.1-aarch64.tar.gz"
 
-TARBALL_SHA256['aarch64']="0e8258cc599a86be428228dd5ea9217959f2c77873790bec645c05899f252c5e"
+TARBALL_SHA256="0e8258cc599a86be428228dd5ea9217959f2c77873790bec645c05899f252c5e"
 
 distro_setup() {
 
