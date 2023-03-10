@@ -1,3 +1,8 @@
+#!/bin/bash
+
+#create alpine-ergo.sh setup plugin for proot-distro
+cd data/data/io.neoterm/files/usr/etc/proot-distro
+echo "
 ##
 ## Plug-in for installing Alpine Linux for Ergo Node.
 ##
@@ -60,6 +65,14 @@ distro_setup() {
         run_proot_cmd apk add wget
         run_proot_cmd apk add python3
         :
-}
+}" > alpine-ergo.sh
+
+#install alpine for ergo node with custom plugin
+
+Proot-distro install Alpine-Ergo
+
+#start alpine
+
+proot-distro login Alpine-Ergo
 
 

