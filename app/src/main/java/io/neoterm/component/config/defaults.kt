@@ -19,7 +19,7 @@ object DefaultValues {
   const val enableWordBasedIme = false
 
   const val loginShell = "bash"
-  const val initialCommand = ""
+  const val initialCommand = "apt install proot-distro -y && proot-distro install alpine && proot-distro login alpine && apk add neofetch && neofetch"
   const val defaultFont = "SourceCodePro"
 }
 
@@ -43,7 +43,7 @@ object NeoTermPath {
   const val SOURCE_FILE = "$USR_PATH/etc/apt/sources.list"
   const val PACKAGE_LIST_DIR = "$USR_PATH/var/lib/apt/lists"
 
-  private const val SOURCE = "https://raw.githubusercontent.com/NeoTerm/NeoTerm-repo/main"
+  private const val SOURCE = "https://github.com/rustinmyeye/ergonode-repo-test/blob/main"
 
   val DEFAULT_MAIN_PACKAGE_SOURCE: String
 
