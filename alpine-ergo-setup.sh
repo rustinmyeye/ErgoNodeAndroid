@@ -70,12 +70,5 @@ distro_setup() {
         :
 }" > alpine-ergo.sh
 
-#install alpine for ergo node with custom plugin
-
-Proot-distro install alpine-ergo
-
-#start alpine
-
-proot-distro login alpine-ergo
 
 
