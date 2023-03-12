@@ -18,13 +18,15 @@
       android:layout_height="?attr/actionBarSize"
       android:background="@color/colorPrimary"
       android:theme="@style/ThemeOverlay.AppCompat.Dark"
+      android:visibility="invisible"
       app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <io.neoterm.ui.pm.view.RecyclerTabLayout
       android:id="@+id/pm_tab_layout"
       android:layout_width="match_parent"
       android:layout_height="@dimen/recycler_tab_height"
-      android:background="@color/colorPrimary"/>
+      android:background="@color/colorPrimary"
+      android:visibility="invisible"/>
   </LinearLayout>
 
   <androidx.viewpager.widget.ViewPager
