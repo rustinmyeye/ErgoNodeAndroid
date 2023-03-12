@@ -1,33 +1,28 @@
 Ergo Node for Android
 =======
 
-A fork of NeoTerm. An attempt at a one click Ergo node app for Android. I'm not sure what im doing...
+An attempt at a one click Ergo node app for Android. I'm not sure what im doing...
 
 
 ![alt text](https://github.com/rustinmyeye/ErgoNode/blob/master/artwork/ergo-small.png?raw=true)
 
-
-NeoTerm
+Credits
 =======
-[![Travis build status](https://travis-ci.org/NeoTerm/NeoTerm.svg?branch=master)](https://travis-ci.org/NeoTerm/NeoTerm)
-![](https://img.shields.io/badge/language-Kotlin-green.svg)
-![](https://img.shields.io/badge/license-GPLv3-000000.svg)
 
-A modern-designed android terminal emulator for the 21st century.
+This is a fork of (NeoTerm)[https://github.com/NeoTerrm/NeoTerm]
 
-### Our Pledge
+I'm using some parts of Ergo Node setup scripts from (Mark Glasgow)[https://github.com/glasgowm148/ergoscripts]
 
-Originally, NeoTerm was designed as the front end of Termux to provide some functions that Termux didn't have, but we
-found it very convenient. In continuous development, we discovered our goal: to be the best terminal for Android.
+also - (proot-distro)[https://github.com/termux/proot-distro], (Alpine Linux)[https://www.alpinelinux.org/], (Ergo Protocol refence client)[https://github.com/ergoplatform/ergo/releases]
 
-### Help & Documentation
+To Do
+=======
 
-View on [GitBook](https://neoterm.gitbooks.io/neoterm-wiki/content)
+- figure out how to automate the initial apt update. I think its something inside the Alpine distro... not sure.
+- add links or descriptions about how to use the node with Ergo Wallet app.
+- figure out a better script to run the node.
+- make "shut down the node" button maybe. the node cam become corrupted if you kill from in android
+- create a link, or WebView on top of the term windows to show node panel at 127.0.0.1:9053/panel
+- remove "new session" buttons
 
-View on [GitHub](https://github.com/NeoTerm/NeoTerm-Wiki)
 
-### Download
-
-[GitHub Release Page](https://github.com/NeoTerm/NeoTerm/releases)
-
-[lzzySoft's F-Droid repo](https://apt.izzysoft.de/fdroid/index/apk/io.neoterm) (thanks to @lzzySoft)
