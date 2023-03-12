@@ -32,7 +32,7 @@ echo "#### Waiting for a response from the server. ####"
 while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && echo -n '.';  done;  # wait for node be ready with progress bar
 
 ## Start node
-java -jar -Xmx3G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &
+java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &
 
 echo "The node is now syncing"
 echo "Starting the node..."
