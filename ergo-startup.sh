@@ -1,8 +1,5 @@
 #!/bin/bash
 
-export API_KEY="dummy"
-export BLAKE_HASH="unset"
-
 #OS=$(uname -m)
 
 ## Create directory
