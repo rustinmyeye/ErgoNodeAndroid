@@ -35,3 +35,9 @@ echo "The node is now syncing"
 echo "Starting the node..."
 echo "Monitor the .log files for any errors"
 echo "Please visit https://127.0.0.0.9053/info to track the status." 
+
+while true  
+do
+          java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf
+            sleep 100
+    done
