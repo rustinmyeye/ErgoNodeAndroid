@@ -34,4 +34,4 @@ java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &
 echo "The node is now syncing"
 echo "Starting the node..."
 echo "Monitor the .log files for any errors"
-echo "Please visit https://127.0.0.0.9053/info to track the status." 
+echo "Please visit https://127.0.0.0.9053/panel to view sync progress." 
