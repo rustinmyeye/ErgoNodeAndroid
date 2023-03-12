@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #download things
-apk add openjdk11 wget python3
+apk add openjdk11 wget python3 curl
 
 #create startup script
 cd ..
