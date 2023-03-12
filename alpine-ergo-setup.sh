@@ -15,6 +15,8 @@ proot-distro install alpine-ergo
 sleep 4
 proot-distro list
 sleep 2
+proot-distro login alpine-ergo
+sleep 2
 
 #run alpine linux and start node setup
 proot-distro login alpine-ergo -- apk add neofetch && neofetch
