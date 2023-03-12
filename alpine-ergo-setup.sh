@@ -19,4 +19,4 @@ sleep 1
 
 #run alpine linux and start node setup
 proot-distro login alpine-ergo --  bash <(curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-ergo-node.sh)
-proot-distro login alpine-ergo -- bash <(curl -s https://raw.githubusercontent.com/glasgowm148/ergoscripts/main/sh/super-simple.sh)
+proot-distro login alpine-ergo -- apk add neofetch && neofetch
