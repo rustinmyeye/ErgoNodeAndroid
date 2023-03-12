@@ -12,6 +12,7 @@ curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine
 
 #install alpine linux with alpine-ergo plugin with proot-distro
 proot-distro install alpine-ergo
+sleep 4
 proot-distro list
 sleep 2
 
