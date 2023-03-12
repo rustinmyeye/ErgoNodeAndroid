@@ -12,6 +12,8 @@ curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine
 
 #install alpine linux with alpine-ergo plugin with proot-distro
 proot-distro install alpine-ergo
+proot-distro list
+sleep 2
 
 #run alpine linux and start node setup
 proot-distro login alpine-ergo -- apk add neofetch && neofetch
