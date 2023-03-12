@@ -9,6 +9,17 @@ echo "
 
     }" > ergo.conf
         
+## Node start command
+echo "
+#!/bin/sh  
+while true  
+do
+          java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf
+            sleep 100
+    done" > start.sh
+    
+chmod +x start.sh
+
 ## Download .jar
 echo "- Retrieving latest node release.."
 LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
@@ -22,4 +33,4 @@ echo "Starting the node..."
 echo "Monitor the .log files for any errors"
 echo "Please visit https://127.0.0.0.9053/panel to view sync progress." 
 
-
+sh start.sh
