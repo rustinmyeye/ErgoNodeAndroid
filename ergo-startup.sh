@@ -167,6 +167,8 @@ print_console() {
 
 print_console" > progress.sh
 
+chmod +x progress.sh
+
 ## Minimal Config
 echo "
     ergo {
