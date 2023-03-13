@@ -54,17 +54,17 @@ get_heights(){
 
         HEADERS_HEIGHT=$(\
             curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" \
-            | python -c "import sys, json; print(json.load(sys.stdin)['headersHeight']);"\
+            | python3 -c "import sys, json; print(json.load(sys.stdin)['headersHeight']);"\
         )
 
         HEIGHT=$(\
         curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json"   \
-        | python -c "import sys, json; print(json.load(sys.stdin)['parameters']['height']);"\
+        | python3 -c "import sys, json; print(json.load(sys.stdin)['parameters']['height']);"\
         )
         
         FULL_HEIGHT=$(\
         curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json"   \
-        | python -c "import sys, json; print(json.load(sys.stdin)['fullHeight']);"\
+        | python3 -c "import sys, json; print(json.load(sys.stdin)['fullHeight']);"\
         )               
         
     fi
@@ -75,17 +75,17 @@ get_heights(){
 
         HEADERS_HEIGHT=$(\
             curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" \
-            | python -c "import sys, json; print json.load(sys.stdin)['headersHeight'];"\
+            | python3 -c "import sys, json; print json.load(sys.stdin)['headersHeight'];"\
         )
 
         HEIGHT=$(\
         curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json"   \
-        | python -c "import sys, json; print json.load(sys.stdin)['parameters']['height'];"\
+        | python3 -c "import sys, json; print json.load(sys.stdin)['parameters']['height'];"\
         )
         
         FULL_HEIGHT=$(\
         curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json"   \
-        | python -c "import sys, json; print json.load(sys.stdin)['fullHeight'];"\
+        | python3 -c "import sys, json; print json.load(sys.stdin)['fullHeight'];"\
         )
     fi
 
