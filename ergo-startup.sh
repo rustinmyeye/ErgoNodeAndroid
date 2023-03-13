@@ -139,6 +139,7 @@ get_heights(){
 } 
     
 print_console() {
+    sh start.sh
     while sleep 120
         do
         clear
@@ -191,7 +192,6 @@ echo "- Downloading Latest known Ergo release: ${LATEST_ERGO_RELEASE}."
 curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
 
 ##Start node
-sh start.sh
 echo "
 
 Starting the node..."
