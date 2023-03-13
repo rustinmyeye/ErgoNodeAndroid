@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #download proot-distro
-apt install proot-distro -y
+apt install proot-distro -qq
 
 #download alpine-ergo.sh setup plugin for proot-distro
 cd ..
 cd usr
 cd etc
 cd proot-distro
-curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-ergo.sh >> alpine-ergo.sh
+curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-ergo.sh >> alpine-ergo.sh
 
 #install alpine linux with alpine-ergo plugin with proot-distro
 proot-distro install alpine-ergo
