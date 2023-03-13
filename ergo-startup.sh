@@ -139,9 +139,10 @@ get_heights(){
 } 
     
 print_console() {
-    sh start.sh
     while sleep 1
         do
+        java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &
+        
         clear
         
         echo "Sync Progress;"
@@ -173,7 +174,7 @@ echo "
     }" > ergo.conf
         
 ## Node start command
-echo "
+#echo "
 #!/bin/sh  
 while true  
 do
@@ -181,7 +182,7 @@ do
         sleep 100
     done" > start.sh
     
-chmod +x start.sh
+#chmod +x start.sh
 
 ## Download .jar
 echo "- Retrieving latest node release.."
