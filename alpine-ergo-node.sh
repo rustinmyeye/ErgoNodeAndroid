@@ -2,6 +2,7 @@
 
 #download things
 echo "Downloading stuff... please wait :)"
+apk update --quiet
 apk add openjdk11 python3 tmux android-tools curl --quiet
 
 #create startup script
