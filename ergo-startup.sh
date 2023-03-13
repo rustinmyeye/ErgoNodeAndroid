@@ -36,6 +36,5 @@ echo "
 
 "
 echo "Please visit https://127.0.0.0.9053/panel to view sync progress." 
-while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && echo -n '.'; done;  # wait for node be ready with progress bar
-
+while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
 sh start.sh
