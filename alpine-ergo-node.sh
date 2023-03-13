@@ -2,7 +2,7 @@
 
 #download things
 echo "Downloading stuff... please wait :)"
-apk add openjdk11 python3 curl --quiet
+apk add openjdk11 python3 tmux curl --quiet
 
 #create startup script
 cd ..
