@@ -180,9 +180,7 @@ while true
 do
           java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &
         sleep 100
-    done
-    
-print_console" > start.sh
+    done" > start.sh
     
 chmod +x start.sh
 
@@ -202,4 +200,5 @@ echo "
 
 "
 echo "Please visit https://127.0.0.0.9053/panel to view sync progress." 
+print_console
 sh start.sh
