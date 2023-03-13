@@ -15,5 +15,4 @@ proot-distro install alpine-ergo
 
 #run alpine linux and start node setup
 proot-distro login alpine-ergo --  bash <(curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-ergo-node.sh)
-sleep 1
 proot-distro login alpine-ergo 
