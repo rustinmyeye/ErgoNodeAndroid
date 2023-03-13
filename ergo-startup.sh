@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#progress script
+echo "#!/bin/bash
+
 error_log(){
     inputFile=ergo.log
     
@@ -162,6 +165,8 @@ print_console() {
     done
 }
 
+print_console" > progress.sh
+
 ## Minimal Config
 echo "
     ergo {
@@ -201,4 +206,4 @@ echo "
 "
 echo "Please visit https://127.0.0.0.9053/panel to view sync progress." 
 sleep 30
-print_console
+sh progress.sh
