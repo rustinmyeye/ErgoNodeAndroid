@@ -139,7 +139,7 @@ get_heights(){
 } 
     
 print_console() {
-    while sleep 1
+    while sleep 120
         do
         clear
         
@@ -191,6 +191,7 @@ echo "- Downloading Latest known Ergo release: ${LATEST_ERGO_RELEASE}."
 curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
 
 ##Start node
+sh start.sh
 echo "
 
 Starting the node..."
@@ -199,4 +200,3 @@ echo "
 "
 echo "Please visit https://127.0.0.0.9053/panel to view sync progress." 
 print_console
-sh start.sh
