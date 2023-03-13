@@ -174,7 +174,11 @@ echo "
 ## Node start command
 echo "
 #!/bin/sh  
-java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &" > start.sh
+while true
+do
+java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &
+    sleep 100
+done" > start.sh
     
 chmod +x start.sh
 
@@ -190,7 +194,8 @@ curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
 echo "
 
 Starting the node..."
-sh start.sh
+
+tmux new-session -d -s my_session 'sh start.sh'
 echo "
 
 "
