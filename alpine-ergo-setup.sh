@@ -10,6 +10,7 @@ cd usr
 cd etc
 cd proot-distro
 curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-ergo.sh >> alpine-ergo.sh
+clear
 
 #install alpine linux with alpine-ergo plugin with proot-distro
 proot-distro install alpine-ergo
