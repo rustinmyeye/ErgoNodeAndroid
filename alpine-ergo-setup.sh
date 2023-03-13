@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #download proot-distro
-apt install proot-distro -qq
+apt install proot-distro -y -q
 
 #download alpine-ergo.sh setup plugin for proot-distro
 cd ..
