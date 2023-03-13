@@ -198,9 +198,7 @@ echo "- Downloading Latest known Ergo release: ${LATEST_ERGO_RELEASE}."
 curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
 
 ##Start node
-echo "
-
-Starting the node..."
+echo "Starting the node..."
 
 tmux new-session -d -s my_session 'sh start.sh && sleep 5'
 echo "
