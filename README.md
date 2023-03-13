@@ -1,6 +1,8 @@
 Ergo Node for Android
 =======
 
+Setup instructions [here](https://github.com/rustinmyeye/ErgoNodeAndroid/blob/master/SETUP_INSTRUCTIONS.md)
+
 An attempt at a one click Ergo node app for Android. I'm not sure what im doing...
 
 
