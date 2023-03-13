@@ -9,3 +9,4 @@ cd etc
 cd profile.d 
 curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/ergo-startup.sh >> ergo.sh
 chmod +x ergo.sh
+clear
