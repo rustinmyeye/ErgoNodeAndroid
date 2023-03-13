@@ -8,6 +8,6 @@ apk add openjdk11 python3 curl --quiet
 cd ..
 cd etc
 cd profile.d 
-curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/ergo-startup.sh >> ergo.sh
+curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/ergo-startup.sh >> ergo.sh
 chmod +x ergo.sh
 clear
