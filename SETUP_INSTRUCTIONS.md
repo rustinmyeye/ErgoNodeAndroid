@@ -37,7 +37,7 @@ It is helpful to aquire wake lock in the Android app panel for the Ergo Node app
 
 ## Using the node
 
-Once the node is fully synchronized you can use the node with other apps, such as the [Ergo Mobile Wallet](https://github.com/ergoplatform/ergo-wallet-app) or ErgoMixer on Android (coming soon...)
+Once the node is fully synchronized you can use the node with other apps, such as the [Ergo Mobile Wallet](https://github.com/ergoplatform/ergo-wallet-app) or [ErgoMixer on Android](https://github.com/rustinmyeye/ErgoMixerAndroid) (coming soon...)
 
 In the Ergo Mobile Wallet, simply enter https://127.0.0.1:9053/ in the "node and api connections" section in the settings.
 
