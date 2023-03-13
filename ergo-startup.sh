@@ -141,7 +141,6 @@ get_heights(){
 print_console() {
     while sleep 1
         do
-        sh start.sh
         clear
         
         echo "Sync Progress;"
@@ -191,8 +190,10 @@ curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
 echo "
 
 Starting the node..."
+sh start.sh
 echo "
 
 "
 echo "Please visit https://127.0.0.0.9053/panel to view sync progress." 
+sleep 30
 print_console
