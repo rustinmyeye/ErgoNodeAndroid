@@ -143,13 +143,9 @@ print_console() {
         do
         clear
         
-        printf "%s    \n\n" \
-        ""\
-        ""  \
-        "For best results please disable any sleep mode while syncing"  \
-        "Sync Progress;"\
-        "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ### "\
-        "### Blocks:  ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ### "
+        print "Sync Progress;"
+        print "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ### "
+        print "### Blocks:  ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ### "
         
         echo ""
         error_log
