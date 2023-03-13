@@ -144,6 +144,8 @@ print_console() {
         clear
         
         printf "%s    \n\n" \
+        ""\
+        ""  \
         "For best results please disable any sleep mode while syncing"  \
         "Sync Progress;"\
         "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ### "\
