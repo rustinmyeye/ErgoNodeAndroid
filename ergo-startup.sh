@@ -36,8 +36,6 @@ while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do
 
 ## Kill
 #curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
-kill -9 $(lsof -t -i:9053) 2>/dev/null
-kill -9 $(lsof -t -i:9030) 2>/dev/null
 killall -9 java 2>/dev/null
 
 ##Start node
