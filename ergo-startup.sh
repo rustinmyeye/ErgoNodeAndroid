@@ -14,7 +14,7 @@ echo "
 #!/bin/sh  
 while true  
 do
-          java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf
+          java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &
             sleep 100
     done" > start.sh
     
