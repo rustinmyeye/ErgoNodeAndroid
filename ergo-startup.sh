@@ -195,7 +195,7 @@ echo "
 
 Starting the node..."
 
-tmux new-session -d -s my_session 'sh start.sh'
+tmux new-session -d -s my_session 'sh start.sh && sleep 5'
 echo "
 
 "
