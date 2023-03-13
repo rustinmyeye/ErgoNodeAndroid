@@ -140,7 +140,7 @@ get_heights(){
     
 print_console() {
     sh start.sh
-    while sleep 120
+    while sleep 1
         do
         clear
         
