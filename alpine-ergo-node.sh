@@ -2,8 +2,8 @@
 
 #download things
 echo "Downloading stuff... please wait :)"
-RUN apk --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ add android-tools --quiet
-apk add openjdk11 python3 tmux android-tools curl --quiet
+apk --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ add android-tools --quiet
+apk add openjdk11 python3 tmux curl --quiet
 
 #create startup script
 cd ..
