@@ -156,13 +156,13 @@ class PackageManagerActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     executeAptUpdate()
   }
 
-  private fun executeAptUpdate() = runApt("update") {
+  private fun executeAptUpdate() = runApt("update -y", ) {
     it.onSuccess { refreshPackageList() }
   }
 
-  private fun executeAptUpgrade() = runApt("update") { update ->
+  private fun executeAptUpgrade() = runApt("update -y") { update ->
     update.onSuccess {
-      runApt("upgrade", "-y") {
+      runApt("upgrade -y", "-y") {
         it.onSuccess { Toast.makeText(this, R.string.apt_upgrade_ok, Toast.LENGTH_SHORT).show() }
       }
     }
