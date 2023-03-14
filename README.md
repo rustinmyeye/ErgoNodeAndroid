@@ -6,7 +6,7 @@ Setup instructions [here](https://github.com/rustinmyeye/ErgoNodeAndroid/blob/ma
 An attempt at a one click Ergo node app for Android. I'm not sure what im doing...
 
 
-![alt text](https://github.com/rustinmyeye/ErgoNode/blob/master/artwork/ergo-small.png?raw=true)
+![alt text](https://raw.githubusercontent.com/rustinmyeye/ErgoMixerAndroid/main/artwork/c.png)
 
 Credits
 =======
