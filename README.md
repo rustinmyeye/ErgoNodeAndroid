@@ -20,11 +20,6 @@ also - [proot-distro](https://github.com/termux/proot-distro), [Alpine Linux](ht
 To Do
 =======
 
-- figure out how to automate the initial apt update. Right now the user needs to press enter to continue...I think its something inside the NeoTerm distro... not sure.
-- add links or descriptions about how to use the node with Ergo Wallet app.
-- figure out a better script to run the node.
 - make "shut down the node" button maybe. the node cam become corrupted if you kill from in android
-- create a link, or WebView on top of the term windows to show node panel at 127.0.0.1:9053/panel
-- remove "new session" buttons
 
 
