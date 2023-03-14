@@ -17,9 +17,7 @@ Locate the .apk file in your downloads folder, and open it to start the installa
 
 Open the app, click on "start the node", and then click "ok" on the disclaimer about storage requirements.
 
-The app will begin installation of the node. 
-
-During "apt upgrade" there is one item that requires user input currently. When the terminal window requests an input, simply touch the screen to bring up the keyboard, and hit enter.
+The app will begin getting things ready to install the node. 
 
 Now allow access to internal storage. Press "allow".
 
