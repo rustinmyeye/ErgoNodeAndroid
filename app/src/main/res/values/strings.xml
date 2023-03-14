@@ -32,8 +32,8 @@
   <string name="setup_error_connection_failed">Failed to connect to server</string>
   <string name="setup_error_parameter_null">Setup parameter is null</string>
   <string name="setup_preparing">Preparing…</string>
-  <string name="setup_confirm">Finish Setup</string>
-  <string name="setup_confirm_text">Ergo Node requires ~30GB of free storage. Continue?</string>
+  <string name="setup_confirm">Welcome to Ergo Node for Android!</string>
+  <string name="setup_confirm_text">Ergo Node requires ~25GB of free storage... Continue?</string>
   <string name="setup_reset_confirm">Reset Confirm</string>
   <string name="setup_reset_confirm_text">This operation will clear all your data! Continue?</string>
 
@@ -59,7 +59,7 @@
   <string name="retry">Retry</string>
   <string name="source_changed">APT source changed, you may get it updated by executing: apt update</string>
   <string name="done">Done</string>
-  <string name="install">Install</string>
+  <string name="install">Getting Ready</string>
   <string name="package_details">Package: %s\nVersion: %s\nDepends: %s\nInstalled Size: %s\nDescription: %s\nHome
     Page: %s
   </string>
@@ -73,7 +73,7 @@
   <string name="crash_app">App: %s</string>
   <string name="crash_stack_trace">Stack Trace</string>
 
-  <string name="installer_message">Installing</string>
+  <string name="installer_message">Getting ready</string>
   <string name="installer_install_zsh_required">We will install oh-my-zsh and switch your login program to zsh
   </string>
 
