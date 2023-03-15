@@ -168,8 +168,8 @@ func_kill(){
         #echo "on Pi!"
         #kill -9 $(lsof -t -i:9053)
         #kill -9 $(lsof -t -i:9030)
-        #killall -9 java
-        sleep 1
+        tmux kill-session -t node_session
+        sleep 10
         ;;
     *) #Other
         #kill -9 $(lsof -t -i:9053)
