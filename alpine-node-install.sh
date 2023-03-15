@@ -70,6 +70,8 @@ first_run() {
             curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
         fi 
         
+        echo "Generating unique API key..."
+        sleep 2
         
        length=25
         export API_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
@@ -204,7 +206,8 @@ print_console() {
         
         printf "%s    \n\n" \
         "View the Ergo node panel at 127.0.0.1:9053/panel"\
-        "You can add this node to Ergo Wallet app's node and api connections when 100% synced"  \
+        "You can add this node to Ergo Wallet app's node and api connections when 100% synced
+        Your unique API key is: $API_KEY"  \
         "For best results please enable wakelock mode while syncing"  \
         "Sync Progress;"\
         "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ### "\
