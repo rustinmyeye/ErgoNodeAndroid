@@ -168,7 +168,8 @@ func_kill(){
         #echo "on Pi!"
         #kill -9 $(lsof -t -i:9053)
         #kill -9 $(lsof -t -i:9030)
-        
+        ;;
+      
          *) #Other
         #kill -9 $(lsof -t -i:9053)
         #kill -9 $(lsof -t -i:9030)
