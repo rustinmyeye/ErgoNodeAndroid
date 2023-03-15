@@ -51,6 +51,7 @@ set_configuration (){
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
     echo "#### Waiting for a response from the server. ####"
+    sleep 10
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
     
 }
@@ -74,12 +75,12 @@ first_run() {
         export API_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
         echo "$API_KEY" > api.conf
         
-        export key=$(cat api.conf)
+        #export key=$(cat api.conf)
         
         start_node
         sleep 30
         
-        export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$key\"")
+        export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
         echo "BLAKE_HASH:$BLAKE_HASH"
         
@@ -199,8 +200,8 @@ print_console() {
         clear
         
         printf "%s    \n\n" \
-        "View the Ergo node panel at 127.0.0.1:9053/panel, yor API key is: $API_KEY"\
-        "You can add this node to Ergo Wallet app's node and api connections when it is 100% synced"  \
+        "View the Ergo node panel at 127.0.0.1:9053/panel"\
+        "You can add this node to Ergo Wallet app's node and api connections when 100% synced"  \
         "For best results please enable wakelock mode while syncing"  \
         "Sync Progress;"\
         "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ### "\
@@ -244,8 +245,8 @@ fi
 set_configuration   
 
 # Launch in browser
-python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
-python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
+#python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
+#python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
 
 # Print to console
 print_console   
