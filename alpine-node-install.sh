@@ -50,7 +50,9 @@ set_configuration (){
 
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
-    echo "#### Waiting for a response from the server. ####"
+    echo "
+    
+#### Waiting for a response from the server. ####"
     sleep 10
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
     
@@ -70,7 +72,8 @@ first_run() {
             curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
         fi 
         
-        echo "Generating unique API key..."
+        echo "
+Generating unique API key..."
         sleep 2
         
        length=25
@@ -207,10 +210,14 @@ print_console() {
         
         printf "%s    \n\n" \
         "View the Ergo node panel at 127.0.0.1:9053/panel"\
-        "You can add this node to Ergo Wallet app's node and api connections when 100% synced
+        "
+You can add this node to Ergo Wallet app's node and api connections when 100% synced
+
 Your unique API key is: $API_KEY"  \
-        "For best results please enable wakelock mode while syncing"  \
-        "Sync Progress;"\
+        "
+For best results please enable wakelock mode while syncing"  \
+        "
+        Sync Progress;"\
         "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ### "\
         "### Blocks:  ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ### "
         
