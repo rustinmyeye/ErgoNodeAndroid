@@ -1,10 +1,10 @@
 #!/bin/bash
 
-export BLAKE_HASH="324dcf027dd4a30a932c441f365a25e86b173defa4b8e58948253471b81b72cf"
+export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
 
 # Set some environment variables
 set_environment(){
-    export API_KEY="dummy"
+    export API_KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
         
     let j=0
     #OS=$(uname -m)
