@@ -20,7 +20,7 @@ echo "
 #!/bin/sh  
 while true
 do
-java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &
+java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &
     sleep 100
 done" > start.sh
     
@@ -37,7 +37,9 @@ curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
 ##Start node in tmux and detach
 echo "Starting the node..."
 
-tmux new-session -d -s my_session 'sh start.sh && sleep 5'
+tmux new-session -d -s my_session 'sh start.sh'
+
+sleep 15
 
 export BLAKE_HASH="324dcf027dd4a30a932c441f365a25e86b173defa4b8e58948253471b81b72cf"
 
@@ -165,7 +167,7 @@ set_environment
 
 start_node
 
-sleep 30
+sleep 15
 
 print_console
 
