@@ -88,16 +88,11 @@ first_run() {
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
         sleep 10
-        tmux kill-session -t node_session
-        sleep 10
 
         # Add blake hash
         set_configuration
         
         start_node
-        
-        # Add blake hash
-        set_configuration
 
 }
 
@@ -252,7 +247,7 @@ else
 fi
 
 # Set the configuration file
-set_configuration   
+#set_configuration   
 
 # Launch in browser
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
