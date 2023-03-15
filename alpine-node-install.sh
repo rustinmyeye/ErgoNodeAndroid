@@ -4,11 +4,7 @@ export BLAKE_HASH="324dcf027dd4a30a932c441f365a25e86b173defa4b8e58948253471b81b7
 
 # Set some environment variables
 set_environment(){
-    
-    length=25
-    
-    export API_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
-        echo "$API_KEY" > api.conf
+    export API_KEY="dummy"
         
     let j=0
     #OS=$(uname -m)
@@ -72,8 +68,12 @@ first_run() {
             echo "- Downloading Latest known Ergo release: ${LATEST_ERGO_RELEASE}."
             curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
         fi 
-
-    
+        
+        
+       length=25
+        export API_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
+        echo "$API_KEY" > api.conf
+        
         tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet > server.log 2>&1 & '
         sleep 30
         
@@ -197,7 +197,7 @@ print_console() {
         clear
         
         printf "%s    \n\n" \
-        "View the Ergo node panel at 127.0.0.1:9053/panel"\
+        "View the Ergo node panel at 127.0.0.1:9053/panel, yor API key is: $API_KEY"\
         "You can add this node to Ergo Wallet app's node and api connections when it is 100% synced"  \
         "For best results please enable wakelock mode while syncing"  \
         "Sync Progress;"\
