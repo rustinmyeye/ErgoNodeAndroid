@@ -99,7 +99,7 @@ set_configuration (){
 }
 
 start_node(){
-    tmux new-session -d -s node_session 'java -jar $JVM_HEAP_SIZE ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &' 
+    sh start.sh
     echo "#### Waiting for a response from the server. ####"
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
     
@@ -130,6 +130,10 @@ rand_str=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
 
 # Print the random string
 echo $rand_str > api.conf
+
+echo "#!/bin/sh
+tmux new-session -d -s node_session 'java -jar $JVM_HEAP_SIZE ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &'" > start.sh
+chmod +x start.sh
 
 
         #export API_KEY=$input
