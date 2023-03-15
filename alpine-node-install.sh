@@ -89,7 +89,7 @@ first_run() {
         echo "$BLAKE_HASH" > blake.conf
         echo "BLAKE_HASH:$BLAKE_HASH"
         
-        curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
+        curl --silent -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
         sleep 10
 
         # Add blake hash
