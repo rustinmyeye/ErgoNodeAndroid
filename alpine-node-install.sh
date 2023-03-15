@@ -4,8 +4,12 @@ export BLAKE_HASH="324dcf027dd4a30a932c441f365a25e86b173defa4b8e58948253471b81b7
 
 # Set some environment variables
 set_environment(){
-    export API_KEY="dummy"
     
+    length=25
+    
+    export API_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
+        echo "$API_KEY" > api.conf
+        
     let j=0
     #OS=$(uname -m)
 
@@ -14,56 +18,6 @@ set_environment(){
     let i=0
     let PERCENT_BLOCKS=100
     let PERCENT_HEADERS=100
-
-   
-    # Set heap
-    case "$(uname -s)" in
-
-        CYGWIN*|MINGW32*|MSYS*|MINGW*)
-            echo 'MS Windows'
-            WIN_MEM=$(systeminfo)
-            WIN_MEM=$(wmic OS get FreePhysicalMemory)
-            kb_to_mb=$((memory*1024))
-            echo "WIN memory !!-- " $kb_to_mb
-            JVM_HEAP_SIZE="-Xmx${kb_to_mb}m"
-            ;;
-
-        Linux)
-            memory=`awk '/MemTotal/ {printf( "%d\n", $2 / 1024 )}' /proc/meminfo` 
-            half_mem=$((${memory%.*} / 2))
-            JVM_HEAP_SIZE="-Xmx${half_mem}m"
-            ;;
-
-        Darwin) #Other
-            memory=$(top -l1 | awk '/PhysMem/ {print $2}')
-            half_mem=$((${memory%?} / 2))
-            JVM_HEAP_SIZE="-Xmx${half_mem}g"             
-            ;;
-
-        Other*)
-            memory=`awk '/MemTotal/ {printf( "%d\n", $2 / 1024 )}' /proc/meminfo` 
-            half_mem=$((${memory%.*} / 3))
-            JVM_HEAP_SIZE="-Xmx${half_mem}m"
-            ;;
-    esac
-
-    case "$(uname -m)" in
-        armv7l|aarch64)
-            JVM_HEAP_SIZE="-Xmx2G"
-            echo "JVM_HEAP_SIZE Set to:" $JVM_HEAP_SIZE
-            
-            #echo "Raspberry Pi detected, running node in light-mode" 
-
-            #echo "blocksToKeep = 1440 # keep ~2 days of blocks"
-            #export blocksToKeep="#blocksToKeep = 1440 # 1440 = ~2days"
-
-            #echo "stateType = digest # Note: You cannot validate arbitrary block and generate ADProofs due to this"
-            #export stateType="stateType = digest"
-
-            #sleep 10
-
-            ;;
-    esac
     
 }
 
@@ -120,28 +74,12 @@ first_run() {
         fi 
 
     
-        
-        # API 
-# Set the length of the random string
-length=25
-
-# Generate a random string using /dev/urandom
-rand_str=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
-
-export API_KEY=$rand_str
-        echo "$API_KEY" > api.conf
-
-        #export API_KEY=$input
-        #echo "$API_KEY" > api.conf
-
-        
-        
-        start_node
+        tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet > server.log 2>&1 & '
         sleep 30
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
-        #echo "BLAKE_HASH:$BLAKE_HASH"
+        echo "BLAKE_HASH:$BLAKE_HASH"
         
         func_kill
 
