@@ -98,13 +98,6 @@ set_configuration (){
 
 }
 
-start_node(){
-    sh start.sh
-    echo "#### Waiting for a response from the server. ####"
-    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
-    
-}
-
 # Set basic config for boot, boot & get the hash and then re-set config 
 first_run() {
 
@@ -141,7 +134,9 @@ chmod +x start.sh
 
         
         
-        start_node
+sh start.sh
+    echo "#### Waiting for a response from the server. ####"
+    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$input\"")
         echo "$BLAKE_HASH" > blake.conf
@@ -152,7 +147,9 @@ chmod +x start.sh
         # Add blake hash
         set_configuration
         
-        start_node
+        sh start.sh
+    echo "#### Waiting for a response from the server. ####"
+    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
         
         # Add blake hash
         set_configuration
@@ -205,7 +202,9 @@ error_log(){
         echo i: $i
         #func_kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
-        start_node
+        sh start.sh
+    echo "#### Waiting for a response from the server. ####"
+    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
         
     fi
 
@@ -222,7 +221,9 @@ check_status(){
         echo -e "${LRED}${1} is down${NC}"
         func_kill
         
-        start_node
+        sh start.sh
+    echo "#### Waiting for a response from the server. ####"
+    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
         print_console
     else
        echo -e "${LGREEN}${1} is online${NC}"
@@ -301,7 +302,9 @@ if [ $count != 0 ]; then
     echo "api.conf: API Key is set to: $API_KEY"
     BLAKE_HASH=$(cat "blake.conf")
     echo "blake.conf: Blake hash is: $BLAKE_HASH"
-    start_node
+    sh start.sh
+    echo "#### Waiting for a response from the server. ####"
+    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
 else 
     # If no .log file - we assume first run
     first_run 
