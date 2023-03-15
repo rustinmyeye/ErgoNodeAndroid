@@ -98,6 +98,13 @@ set_configuration (){
 
 }
 
+start_node(){
+    tmux new_session -d -s node_session 'java -jar $JVM_HEAP_SIZE ergo.jar --mainnet -c ergo.conf > server.log 2>&1 & '
+    echo "#### Waiting for a response from the server. ####"
+    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
+    
+}
+
 # Set basic config for boot, boot & get the hash and then re-set config 
 first_run() {
 
@@ -124,19 +131,13 @@ rand_str=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
 # Print the random string
 echo $rand_str > api.conf
 
-echo "#!/bin/sh
-tmux new-session -d -s node_session 'java -jar $JVM_HEAP_SIZE ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &'" > start.sh
-chmod +x start.sh
-
 
         #export API_KEY=$input
         #echo "$API_KEY" > api.conf
 
         
         
-sh start.sh
-    echo "#### Waiting for a response from the server. ####"
-    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
+        start_node
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$input\"")
         echo "$BLAKE_HASH" > blake.conf
@@ -147,9 +148,7 @@ sh start.sh
         # Add blake hash
         set_configuration
         
-        sh start.sh
-    echo "#### Waiting for a response from the server. ####"
-    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
+        start_node
         
         # Add blake hash
         set_configuration
@@ -202,9 +201,7 @@ error_log(){
         echo i: $i
         #func_kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
-        sh start.sh
-    echo "#### Waiting for a response from the server. ####"
-    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
+        start_node
         
     fi
 
@@ -221,9 +218,7 @@ check_status(){
         echo -e "${LRED}${1} is down${NC}"
         func_kill
         
-        sh start.sh
-    echo "#### Waiting for a response from the server. ####"
-    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
+        start_node
         print_console
     else
        echo -e "${LGREEN}${1} is online${NC}"
@@ -302,9 +297,7 @@ if [ $count != 0 ]; then
     echo "api.conf: API Key is set to: $API_KEY"
     BLAKE_HASH=$(cat "blake.conf")
     echo "blake.conf: Blake hash is: $BLAKE_HASH"
-    sh start.sh
-    echo "#### Waiting for a response from the server. ####"
-    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
+    start_node
 else 
     # If no .log file - we assume first run
     first_run 
@@ -312,6 +305,10 @@ fi
 
 # Set the configuration file
 set_configuration   
+
+# Launch in browser
+python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
+python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
 
 # Print to console
 print_console   
