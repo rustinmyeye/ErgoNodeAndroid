@@ -74,7 +74,7 @@ first_run() {
         export API_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
         echo "$API_KEY" > api.conf
         
-        tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet > server.log 2>&1 & '
+        start_node
         sleep 30
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
