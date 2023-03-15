@@ -4,7 +4,7 @@ export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc
 
 # Set some environment variables
 set_environment(){
-    export API_KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
+    export KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
         
     let j=0
     #OS=$(uname -m)
@@ -86,7 +86,10 @@ first_run() {
         echo "$BLAKE_HASH" > blake.conf
         echo "BLAKE_HASH:$BLAKE_HASH"
         
-        func_kill
+        curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
+        sleep 10
+        tmux kill-session -t node_session
+        sleep 10
 
         # Add blake hash
         set_configuration
