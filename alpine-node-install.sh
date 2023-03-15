@@ -128,9 +128,8 @@ length=25
 # Generate a random string using /dev/urandom
 rand_str=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
 
-# Print the random string
-echo $rand_str > api.conf
-
+export API_KEY=$rand_str
+        echo "$API_KEY" > api.conf
 
         #export API_KEY=$input
         #echo "$API_KEY" > api.conf
@@ -139,7 +138,7 @@ echo $rand_str > api.conf
         
         start_node
         
-        export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$input\"")
+        export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
         #echo "BLAKE_HASH:$BLAKE_HASH"
         
