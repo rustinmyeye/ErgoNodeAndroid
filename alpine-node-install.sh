@@ -285,10 +285,7 @@ print_console() {
 set_configuration
 
 # Set some environment variables
-set_environment     
-
-# Cross-platform killer
-func_kill   
+set_environment        
 
 # Check for the prescence of log files
 count=`ls -1 blake.conf 2>/dev/null | wc -l`
