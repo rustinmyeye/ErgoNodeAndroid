@@ -98,8 +98,13 @@ set_configuration (){
 
 }
 
+echo "#!/bin/sh
+tmux new-session -d -s node_session 'java -jar $JVM_HEAP_SIZE ergo.jar --mainnet -c ergo.conf > server.log 2>&1 &' > start.sh
+chmod +x 
+start.sh
+
 start_node() {
-   tmux new-session -d -s node_session 'java -jar $JVM_HEAP_SIZE ergo.jar --mainnet -c ergo.conf > server.log 2>&1 & '
+   sh start.sh
    echo "#### Waiting for a response from the server. ####"
    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
     
