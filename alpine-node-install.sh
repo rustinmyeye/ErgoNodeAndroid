@@ -107,14 +107,17 @@ func_kill(){
 
     armv7l*|aarch64)
         #echo "on Pi!"
-        #kill -9 $(lsof -t -i:9053)
-        #kill -9 $(lsof -t -i:9030)
+        #kill
+        curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
+        sleep 10
         tmux kill-session -t node_session
         sleep 10
         ;;
     *) #Other
         #kill -9 $(lsof -t -i:9053)
         #kill -9 $(lsof -t -i:9030)
+        curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
+        sleep 10
         tmux kill-session -t node_session
         sleep 10
         ;;
