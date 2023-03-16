@@ -105,7 +105,7 @@ start_node(){
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1; done;  # wait for node be ready with progress bar
     
     echo "- Node has started... Searching for peers"
-    secs=103
+    secs=123
     while [ $secs -gt 0 ]; do
        echo -ne "- Wait time remaining: $secs\033[0K\r"
        sleep 1
