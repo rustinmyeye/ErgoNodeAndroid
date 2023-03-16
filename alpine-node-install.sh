@@ -48,7 +48,7 @@ set_configuration (){
 
 }
 
-main_thing() {
+main_thing(){
     # Check for the prescence of log files
     count=`ls -1 blake.conf 2>/dev/null | wc -l`
     if [ $count != 0 ]; then   
@@ -229,7 +229,7 @@ get_heights(){
 }
     
 ## Display info to user    
-print_console() {
+print_console(){
     while sleep 1
         do
         clear
