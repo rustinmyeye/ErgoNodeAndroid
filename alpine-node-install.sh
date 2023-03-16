@@ -97,7 +97,6 @@ Generating unique API key..."
         start_node
         sleep 5
         
-        set_configuration
         
         
 }
@@ -250,6 +249,7 @@ if [ $count != 0 ]; then
     echo "api.conf: API Key is set to: $API_KEY"
     BLAKE_HASH=$(cat "blake.conf")
     echo "blake.conf: Blake hash is: $BLAKE_HASH"
+    set_configuration
     start_node
     sleep 5
 else 
@@ -259,7 +259,7 @@ else
 fi
 
 # Set the configuration file
-set_configuration   
+   
 # Launch in browser
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
