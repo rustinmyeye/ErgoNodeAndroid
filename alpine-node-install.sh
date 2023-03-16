@@ -63,7 +63,7 @@ else
     first_run 
 fi
 
-# Set the configuration file
+areyou_there
    
 # Launch in browser
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
@@ -101,7 +101,6 @@ areyou_there() {
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
     sleep 30
-    areyou_there
     echo "
     
 #### Waiting for a response from the server. ####"
