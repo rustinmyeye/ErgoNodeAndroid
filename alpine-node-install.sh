@@ -72,7 +72,6 @@ fi
 # Launch in browser
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
-sleep 15
 # Print to console
 print_console   
 
@@ -83,7 +82,7 @@ start_node(){
     echo "
     
 #### Waiting for a response from the server. ####"
-    sleep 3
+    sleep 11
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
     
 }
