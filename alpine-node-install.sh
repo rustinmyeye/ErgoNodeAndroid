@@ -60,7 +60,7 @@ main_thing(){
 Configuration is ok"
     BLAKE_HASH=$(cat "blake.conf")
     echo "
-Searching for peers"
+"
     set_configuration
     start_node
 else 
@@ -102,8 +102,13 @@ areyou_there() {
 
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx1g ergo.jar --mainnet -c ergo.conf'
-    echo "Node has started... waiting for peers"
-    sleep 69
+    echo "Node has started... Searching for peers"
+    secs=69
+while [ $secs -gt 0 ]; do
+   echo -ne "$secs\033[0K\r"
+   sleep 1
+   : $((secs--))
+done
     #echo "
     
 #### Waiting for a response from the server. ####"
