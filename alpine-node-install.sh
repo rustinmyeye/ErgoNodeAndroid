@@ -5,6 +5,9 @@ export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc
 # Set some environment variables
 set_environment(){
     export KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
+    PEER_CHECK_INTERVAL=10
+    MAX_CHECKS=6
+    CHECK_COUNT=0
         
     let j=0
     #OS=$(uname -m)
@@ -73,10 +76,6 @@ print_console
 
 
 areyou_there() {
-    PEER_CHECK_INTERVAL=10
-    MAX_CHECKS=6
-    CHECK_COUNT=0
-
     IM_HERE=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
   
   if [ $IM_HERE -lt 1 ]; then
