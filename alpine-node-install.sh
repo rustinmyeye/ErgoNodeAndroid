@@ -44,6 +44,7 @@ set_configuration (){
                 
                 }
         " > ergo.conf
+}
 
 main_thing(){
     # Check for the prescence of log files
