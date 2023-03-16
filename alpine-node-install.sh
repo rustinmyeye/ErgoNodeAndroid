@@ -86,7 +86,8 @@ areyou_there() {
     if [ $CHECK_COUNT -eq $MAX_CHECKS ]; then
       echo "No peers found after ${MAX_CHECKS} checks. Restarting"
       tmux kill-session -t node_session
-      main_thing
+      set_configuration
+      first_run
     else
       areyou_there
     fi
