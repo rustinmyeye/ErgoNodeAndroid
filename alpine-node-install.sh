@@ -167,9 +167,7 @@ check_status(){
         echo -e "${LRED}${1} is down${NC}"
         func_kill
         
-        start_node
-        sleep 5
-        print_console
+        main
     else
        echo -e "${LGREEN}${1} is online${NC}"
     fi
@@ -230,19 +228,6 @@ For best results please enable wakelock mode while syncing"  \
       
     done
 }
-
-
-
-
-
-        
-# Set some environment variables
-        set_environment
-
-        # pipes initial config > ergo.conf
-        set_configuration
-        
-        main
         
 main() {
 # Check for the prescence of log files
@@ -271,3 +256,11 @@ fi
 print_console   
 
 }
+
+# Set some environment variables
+        set_environment
+
+        # pipes initial config > ergo.conf
+        set_configuration
+        
+        main
