@@ -18,6 +18,8 @@ set_environment(){
     let PERCENT_BLOCKS=100
     let PERCENT_HEADERS=100
     
+}
+    
 set_configuration(){
         echo "
                 ergo {
