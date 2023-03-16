@@ -104,17 +104,14 @@ start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
     echo "- Node has started... Searching for peers"
     secs=103
-while [ $secs -gt 0 ]; do
-   echo -ne "- Wait time remaining: $secs\033[0K\r"
-   sleep 1
-   : $((secs--))
-done
-    #echo "
-    
-#### Waiting for a response from the server. ####"
+    while [ $secs -gt 0 ]; do
+       echo -ne "- Wait time remaining: $secs\033[0K\r"
+       sleep 1
+       : $((secs--))
+        done
     areyou_there
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
-
+    
 }
 
 # Set basic config for boot, boot & get the hash and then re-set config 
