@@ -1,13 +1,13 @@
 #!/bin/bash
 
 export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
-
+       PEER_CHECK_INTERVAL=10
+       MAX_CHECKS=6
+       CHECK_COUNT=0
 # Set some environment variables
 set_environment(){
     export KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
-    PEER_CHECK_INTERVAL=10
-    MAX_CHECKS=6
-    CHECK_COUNT=0
+
         
     let j=0
     #OS=$(uname -m)
