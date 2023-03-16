@@ -60,11 +60,9 @@ api.conf: API Key is set to: $API_KEY"
 blake.conf: Blake hash is: $BLAKE_HASH"
     set_configuration
     start_node
-    sleep 5
 else 
     # If no .log file - we assume first run
     first_run 
-    sleep 5
 fi
 
 # Set the configuration file
