@@ -18,8 +18,6 @@ set_environment(){
     let PERCENT_BLOCKS=100
     let PERCENT_HEADERS=100
     
-}
-
 set_configuration (){
         echo "
                 ergo {
@@ -47,6 +45,7 @@ set_configuration (){
                 
                 }
         " > ergo.conf
+
 }
 
 main_thing(){
@@ -100,10 +99,10 @@ areyou_there() {
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx1g ergo.jar --mainnet -c ergo.conf'
     sleep 60
-    #areyou_there
     echo "
     
 #### Waiting for a response from the server. ####"
+    areyou_there
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
 
 }
@@ -131,7 +130,7 @@ Generating unique API key..."
         
         #export key=$(cat api.conf)
         
-        tmux new-session -d -s node 'java -jar Xmx1G ergo.jar --mainnet -c ergo.conf'
+        tmux new-session -d -s node 'java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf'
         echo "Node has started... waiting for peers."
         sleep 60
         
@@ -142,11 +141,10 @@ Generating unique API key..."
         
         areyou_there
         
-        curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
-        echo "
-Ignore this... Node is restarting"
+        func_kill
+        
         sleep 10
-        tmux kill-session -t node
+        tmux kill-session -t node_session
 
         # Add blake hash
         set_configuration
