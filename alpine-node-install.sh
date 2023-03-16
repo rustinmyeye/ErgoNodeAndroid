@@ -131,7 +131,9 @@ start_node(){
 
 # Set basic config for boot, boot & get the hash and then re-set config 
 first_run() {
-
+KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
+BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
+set_configuration
 ### Download the latest .jar file                                                                    
         if [ ! -e *.jar ]; then 
             echo "- Retrieving latest node release.."
