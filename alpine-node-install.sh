@@ -62,7 +62,13 @@ start_node(){
 first_run() {
 
             
-        ### Download the latest .jar file                                                                    
+        # Set some environment variables
+        set_environment
+
+        # pipes initial config > ergo.conf
+        set_configuration
+
+### Download the latest .jar file                                                                    
         if [ ! -e *.jar ]; then 
             echo "- Retrieving latest node release.."
             LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
@@ -235,12 +241,6 @@ For best results please enable wakelock mode while syncing"  \
 # /
 # main()
 # / 
-
-# Set some environment variables
-set_environment
-
-# pipes initial config > ergo.conf
-set_configuration
         
 
 # Check for the prescence of log files
