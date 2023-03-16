@@ -132,7 +132,7 @@ Generating unique API key..."
         
         #export key=$(cat api.conf)
         
-        tmux new-session -d -s node 'java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf'
+        tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
         echo "Node has started... waiting for peers."
         sleep 60
         
@@ -144,9 +144,6 @@ Generating unique API key..."
         areyou_there
         
         func_kill
-        
-        sleep 10
-        tmux kill-session -t node_session
 
         # Add blake hash
         set_configuration
@@ -172,6 +169,7 @@ func_kill(){
         #echo "on Pi!"
         #kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
+        sleep 10
         tmux kill-session -t node_session
         sleep 10
         ;;
@@ -179,6 +177,7 @@ func_kill(){
         #kill -9 $(lsof -t -i:9053)
         #kill -9 $(lsof -t -i:9030)
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
+        sleep 10
         tmux kill-session -t node_session
         sleep 10
         ;;
