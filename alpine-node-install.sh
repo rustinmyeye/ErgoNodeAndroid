@@ -53,7 +53,6 @@ start_node(){
     echo "
     
 #### Waiting for a response from the server. ####"
-    sleep 10
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
     
 }
@@ -88,14 +87,14 @@ Generating unique API key..."
         echo "BLAKE_HASH:$BLAKE_HASH"
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
-        sleep 5
         tmux kill-session -t node_session
 
         # Add blake hash
         set_configuration
         
         start_node
-        sleep 30
+        
+        set_configuration
 }
 
 func_kill(){
@@ -111,7 +110,6 @@ func_kill(){
         #echo "on Pi!"
         #kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
-        sleep 10
         tmux kill-session -t node_session
         sleep 10
         ;;
@@ -119,7 +117,6 @@ func_kill(){
         #kill -9 $(lsof -t -i:9053)
         #kill -9 $(lsof -t -i:9030)
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
-        sleep 10
         tmux kill-session -t node_session
         sleep 10
         ;;
@@ -247,7 +244,6 @@ if [ $count != 0 ]; then
     BLAKE_HASH=$(cat "blake.conf")
     echo "blake.conf: Blake hash is: $BLAKE_HASH"
     start_node
-    sleep 15
 else 
     # If no .log file - we assume first run
     first_run 
@@ -255,7 +251,6 @@ fi
 
 # Set the configuration file
 set_configuration   
-sleep 10
 # Launch in browser
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
