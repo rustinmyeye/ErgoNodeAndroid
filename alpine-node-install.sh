@@ -28,7 +28,7 @@ set_configuration (){
                         # Skip validation of transactions in the mainnet before block 417,792 (in v1 blocks).
                         # Block 417,792 is checkpointed by the protocol (so its UTXO set as well).
                         # The node still applying transactions to UTXO set and so checks UTXO set digests for each block.
-                        skipV1TransactionsValidation = true
+                        #skipV1TransactionsValidation = true
                     }
 
                 }      
@@ -49,7 +49,7 @@ set_configuration (){
 }
 
 start_node(){
-    tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
+    tmux new-session -d -s node_session 'java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf'
     echo "
     
 #### Waiting for a response from the server. ####"
@@ -60,13 +60,6 @@ start_node(){
 
 # Set basic config for boot, boot & get the hash and then re-set config 
 first_run() {
-
-            
-        # Set some environment variables
-        set_environment
-
-        # pipes initial config > ergo.conf
-        set_configuration
 
 ### Download the latest .jar file                                                                    
         if [ ! -e *.jar ]; then 
@@ -242,7 +235,12 @@ For best results please enable wakelock mode while syncing"  \
 # main()
 # / 
         
+# Set some environment variables
+        set_environment
 
+        # pipes initial config > ergo.conf
+        set_configuration
+        
 # Check for the prescence of log files
 count=`ls -1 blake.conf 2>/dev/null | wc -l`
 if [ $count != 0 ]; then   
@@ -257,7 +255,7 @@ else
 fi
 
 # Set the configuration file
-set_configuration   
+#set_configuration   
 
 # Launch in browser
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
