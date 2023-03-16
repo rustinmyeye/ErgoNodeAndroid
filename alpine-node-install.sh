@@ -72,7 +72,7 @@ fi
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
 # Print to console
-#error_log
+error_log
 print_console   
 
 }
@@ -101,7 +101,9 @@ areyou_there() {
 }
 
 start_node(){
-    tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
+    tmux new-session -d -s node_session 'java -jar -Xmx2g ergo.jar --mainnet -c ergo.conf'
+    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1; done;  # wait for node be ready with progress bar
+    
     echo "- Node has started... Searching for peers"
     secs=103
     while [ $secs -gt 0 ]; do
@@ -110,7 +112,6 @@ start_node(){
        : $((secs--))
         done
     areyou_there
-    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
     
 }
 
