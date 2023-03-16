@@ -81,6 +81,7 @@ Generating unique API key..."
         #export key=$(cat api.conf)
         
         start_node
+        sleep 5
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
@@ -96,6 +97,8 @@ Generating unique API key..."
         sleep 5
         
         set_configuration
+        
+        exec bash 
 }
 
 func_kill(){
