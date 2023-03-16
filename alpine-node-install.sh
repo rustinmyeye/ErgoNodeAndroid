@@ -97,7 +97,7 @@ areyou_there() {
 }
 
 start_node(){
-    tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
+    tmux new-session -d -s node_session 'java -jar -Xmx1g ergo.jar --mainnet -c ergo.conf'
     sleep 60
     areyou_there
     echo "
@@ -130,7 +130,7 @@ Generating unique API key..."
         
         #export key=$(cat api.conf)
         
-        tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
+        tmux new-session -d -s node_session 'java -jar Xmx1G ergo.jar --mainnet -c ergo.conf'
         echo "Node has started... waiting for peers."
         sleep 60
         
