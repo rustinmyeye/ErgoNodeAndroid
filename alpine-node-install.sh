@@ -49,7 +49,7 @@ set_configuration (){
 }
 
 start_node(){
-    tmux new-session -d -s node_session 'java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf'
+    tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
     echo "
     
 #### Waiting for a response from the server. ####"
