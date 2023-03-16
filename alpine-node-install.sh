@@ -148,6 +148,7 @@ Generating unique API key..."
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
         #sleep 10
+        rm -rf .ergo
         tmux kill-session -t node_session
 
         # Add blake hash
