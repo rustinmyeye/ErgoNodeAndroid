@@ -86,8 +86,8 @@ areyou_there() {
     sleep ${PEER_CHECK_INTERVAL}
     CHECK_COUNT=$((CHECK_COUNT + 1))
     if [ $CHECK_COUNT -eq $MAX_CHECKS ]; then
-      echo "No peers found after ${MAX_CHECKS} checks. Restarting"
-      tmux kill-session -t node_session
+      echo "No peers found after ${MAX_CHECKS} checks. 
+      tmux kill-server
       set_configuration
       
       main_thing
@@ -140,7 +140,7 @@ Generating unique API key..."
         
         #export key=$(cat api.conf)
         
-        tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
+        tmux new-session -d -s node 'java -jar ergo.jar --mainnet -c ergo.conf'
         sleep 15
         echo "Node has started... getting blake hash."
         
@@ -150,12 +150,12 @@ Generating unique API key..."
         echo "$BLAKE_HASH" > blake.conf
         echo "BLAKE_HASH:$BLAKE_HASH"
         
-        #areyou_there
+        areyou_there
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
-        #sleep 10
-        tmux kill-session -t node_session
-        rm -rf .ergo
+        sleep 10
+        tmux kill-server
+        #rm -rf .ergo
         clear
         # Add blake hash
         set_configuration
