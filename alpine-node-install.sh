@@ -70,7 +70,7 @@ fi
 # Launch in browser
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
-
+sleep 15
 # Print to console
 print_console   
 
