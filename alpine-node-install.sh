@@ -59,10 +59,12 @@ Configuration is ok"
     BLAKE_HASH=$(cat "blake.conf")
     echo "
 Searching for peers"
+    set_environment
     set_configuration
     start_node
 else 
     # If no .log file - we assume first run
+    set_environment
     first_run 
 fi
    
