@@ -151,17 +151,17 @@ Generating unique API key..."
         
         #areyou_there
         
-        #curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
-        #sleep 10
-        #tmux kill-server
+        curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
+        sleep 10
+        tmux kill-server
         #rm -rf .ergo
         clear
         # Add blake hash
-        echo "Your unique API key will be added to the configuration when you close the app completely and restart"
+        #echo "Your unique API key will be added to the configuration when you close the app completely and restart"
         set_configuration
-        error_log
-        print_console
-        #main_thing
+        #error_log
+        #print_console
+        main_thing
         
 }
 
@@ -274,8 +274,6 @@ print_console(){
         printf "%s    \n\n" \
         "View the Ergo node panel at 127.0.0.1:9053/panel"\
         "
-You can add this node to Ergo Wallet App's "node and api connections" section when the node is 100% synced
-
 Your unique API key is: $API_KEY"  \
         "
 For best results please enable wakelock mode while syncing"  \
