@@ -149,11 +149,10 @@ Generating unique API key..."
         tmux kill-session -t node_session
 
         # Add blake hash
-        #set_configuration
+        set_configuration
         
-        #main_thing
+        main_thing
         
-        reboot
     
         
         
