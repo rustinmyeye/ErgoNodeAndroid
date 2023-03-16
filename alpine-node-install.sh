@@ -101,7 +101,7 @@ areyou_there() {
 }
 
 start_node(){
-    tmux new-session -d -s node_session 'java -jar -Xmx1g ergo.jar --mainnet -c ergo.conf'
+    tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
     echo "- Node has started... Searching for peers"
     secs=103
 while [ $secs -gt 0 ]; do
@@ -154,8 +154,8 @@ Generating unique API key..."
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
         #sleep 10
-        rm -rf .ergo
         tmux kill-session -t node_session
+        rm -rf .ergo
         clear
         # Add blake hash
         set_configuration
