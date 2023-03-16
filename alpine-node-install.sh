@@ -52,10 +52,10 @@ main_thing(){
     if [ $count != 0 ]; then   
     API_KEY=$(cat "api.conf")
     echo "
-api.conf: API Key is set to: $API_KEY"
+Configuration is ok"
     BLAKE_HASH=$(cat "blake.conf")
     echo "
-blake.conf: Blake hash is: $BLAKE_HASH"
+Searching for peers"
     set_configuration
     start_node
 else 
@@ -86,7 +86,7 @@ areyou_there() {
     sleep ${PEER_CHECK_INTERVAL}
     CHECK_COUNT=$((CHECK_COUNT + 1))
     if [ $CHECK_COUNT -eq $MAX_CHECKS ]; then
-      echo "No peers found after ${MAX_CHECKS} checks. Killing tmux session ${SESSION_NAME}"
+      echo "No peers found after ${MAX_CHECKS} checks. Restarting"
       tmux kill-session -t node_session
       main_thing
     else
