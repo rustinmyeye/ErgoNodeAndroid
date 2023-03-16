@@ -81,18 +81,15 @@ Generating unique API key..."
         
         #export key=$(cat api.conf)
         
-        java -jar ergo.jar --mainnet -c ergo.conf > server.log 2>&1 & 
-        echo "#### Waiting for a response from the server. ####"
-    sleep 10
-    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;
-        sleep 30
+        start_node
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
         echo "BLAKE_HASH:$BLAKE_HASH"
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
-        sleep 10
+        sleep 5
+        tmux kill-session -t node_session
 
         # Add blake hash
         set_configuration
@@ -150,6 +147,7 @@ error_log(){
         echo i: $i
         #func_kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
+        tmux kill-session -t node_session
         start_node
         
     fi
