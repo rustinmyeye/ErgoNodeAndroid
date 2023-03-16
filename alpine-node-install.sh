@@ -94,7 +94,7 @@ areyou_there() {
       if [ $ROUND_COUNT -eq 3 ]; then
         echo "No peers found after ${MAX_CHECKS} checks for 3 rounds. Killing process and restarting."
         tmux kill-server
-        rm -rf .ergo
+        #rm -rf .ergo
         clear
         first_run
       else
@@ -167,7 +167,7 @@ Generating unique API key..."
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
         sleep 10
         tmux kill-server
-        rm -rf .ergo
+        #rm -rf .ergo
         clear
         # Add blake hash
         set_configuration
