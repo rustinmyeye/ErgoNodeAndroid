@@ -108,7 +108,7 @@ Generating unique API key..."
         
         #export key=$(cat api.conf)
         
-        tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
+        tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
         sleep 60
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
