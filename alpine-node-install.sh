@@ -4,6 +4,7 @@ export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc
        PEER_CHECK_INTERVAL=10
        MAX_CHECKS=6
        CHECK_COUNT=0
+       ROUND_COUNT=0
 # Set some environment variables
 set_environment(){
     export KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
@@ -77,20 +78,31 @@ print_console
 
 }
 
-
 areyou_there() {
-    IM_HERE=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
+  IM_HERE=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount', None));")
   
-  if [ $IM_HERE -lt 1 ]; then
+  if [ -z "$IM_HERE" ]; then
+    echo "No response from server. Waiting for ${PEER_CHECK_INTERVAL} seconds..."
+    sleep ${PEER_CHECK_INTERVAL}
+    areyou_there
+  elif [ $IM_HERE -lt 1 ]; then
     echo "No peers available. Waiting for ${PEER_CHECK_INTERVAL} seconds..."
     sleep ${PEER_CHECK_INTERVAL}
     CHECK_COUNT=$((CHECK_COUNT + 1))
     if [ $CHECK_COUNT -eq $MAX_CHECKS ]; then
-      echo "No peers found after ${MAX_CHECKS} checks."
-      tmux kill-server
-      set_configuration
-      
-      main_thing
+      ROUND_COUNT=$((ROUND_COUNT + 1))
+      if [ $ROUND_COUNT -eq 3 ]; then
+        echo "No peers found after ${MAX_CHECKS} checks for 3 rounds. Killing process and restarting."
+        tmux kill-server
+        rm -rf .ergo
+        clear
+        first_run
+      else
+        echo "No peers found after ${MAX_CHECKS} checks for round $ROUND_COUNT. Starting new round."
+        sleep 60
+        CHECK_COUNT=0
+        areyou_there
+      fi
     else
       areyou_there
     fi
@@ -162,11 +174,6 @@ Generating unique API key..."
         
         main_thing
         
-    
-        
-        
-        
-        
 }
 
 func_kill(){
@@ -183,7 +190,7 @@ func_kill(){
         #kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
         sleep 10
-        tmux kill-session -t node_session
+        tmux kill-server
         sleep 10
         ;;
     *) #Other
@@ -191,7 +198,7 @@ func_kill(){
         #kill -9 $(lsof -t -i:9030)
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
         sleep 10
-        tmux kill-session -t node_session
+        tmux kill-server
         sleep 10
         ;;
     esac
@@ -218,7 +225,7 @@ error_log(){
         echo i: $i
         #func_kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
-        tmux kill-session -t node_session
+        tmux kill-server
         main_thing
         
     fi
@@ -278,7 +285,7 @@ print_console(){
         printf "%s    \n\n" \
         "View the Ergo node panel at 127.0.0.1:9053/panel"\
         "
-You can add this node to Ergo Wallet app's node and api connections when 100% synced
+You can add this node to Ergo Wallet App's "node and api connections" section when the node is 100% synced
 
 Your unique API key is: $API_KEY"  \
         "
