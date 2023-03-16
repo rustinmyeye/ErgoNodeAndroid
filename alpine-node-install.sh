@@ -141,7 +141,7 @@ Generating unique API key..."
         echo "$BLAKE_HASH" > blake.conf
         echo "BLAKE_HASH:$BLAKE_HASH"
         
-        areyo_there
+        areyou_there
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
         echo "
