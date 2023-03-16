@@ -111,6 +111,8 @@ start_node(){
        sleep 1
        : $((secs--))
         done
+        echo "
+        "
     areyou_there
     
 }
