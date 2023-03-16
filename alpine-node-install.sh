@@ -82,7 +82,7 @@ areyou_there() {
   if [ $IM_HERE -lt 1 ]; then
     echo "No peers available. Waiting for ${PEER_CHECK_INTERVAL} seconds..."
     sleep ${PEER_CHECK_INTERVAL}
-    CHECK_COUNT=($CHECK_COUNT + 1)
+    CHECK_COUNT=$((CHECK_COUNT + 1)
     if [ $CHECK_COUNT -eq $MAX_CHECKS ]; then
       echo "No peers found after ${MAX_CHECKS} checks. Restarting"
       tmux kill-session -t node_session
