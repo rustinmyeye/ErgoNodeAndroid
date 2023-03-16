@@ -80,7 +80,7 @@ start_node(){
     echo "
     
 #### Waiting for a response from the server. ####"
-    sleep 11
+    sleep 31
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
     
 }
