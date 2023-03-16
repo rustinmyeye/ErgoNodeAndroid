@@ -99,7 +99,7 @@ Generating unique API key..."
         
         set_configuration
         
-        exec sh ergo.sh
+        
 }
 
 func_kill(){
