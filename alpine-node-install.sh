@@ -80,11 +80,15 @@ areyou_there() {
     echo "No peers available. Waiting for 10 seconds..."
     sleep 10
     areyou_there
+    else
+    echo "Found $IM_HERE peers!"
+    sleep 2
   fi
 }
 
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
+    sleep 30
     areyou_there
     echo "
     
