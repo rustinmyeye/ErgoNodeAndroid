@@ -98,7 +98,7 @@ areyou_there() {
 }
 
 start_node(){
-    tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
+    tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
     sleep 60
     areyou_there
     echo "
