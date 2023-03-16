@@ -48,6 +48,34 @@ set_configuration (){
 
 }
 
+main_thing() {
+    # Check for the prescence of log files
+    count=`ls -1 blake.conf 2>/dev/null | wc -l`
+    if [ $count != 0 ]; then   
+    API_KEY=$(cat "api.conf")
+    echo "api.conf: API Key is set to: $API_KEY"
+    BLAKE_HASH=$(cat "blake.conf")
+    echo "blake.conf: Blake hash is: $BLAKE_HASH"
+    set_configuration
+    start_node
+    sleep 5
+else 
+    # If no .log file - we assume first run
+    first_run 
+    sleep 5
+fi
+
+# Set the configuration file
+   
+# Launch in browser
+#python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
+#python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
+
+# Print to console
+print_console   
+
+}
+
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
     echo "
@@ -94,7 +122,7 @@ Generating unique API key..."
         # Add blake hash
         set_configuration
         
-        main
+        main_thing
     
         
         
@@ -150,7 +178,7 @@ error_log(){
         #func_kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
         tmux kill-session -t node_session
-        main
+        main_thing
         
     fi
 
@@ -167,7 +195,7 @@ check_status(){
         echo -e "${LRED}${1} is down${NC}"
         func_kill
         
-        main
+        main_thing
     else
        echo -e "${LGREEN}${1} is online${NC}"
     fi
@@ -229,38 +257,10 @@ For best results please enable wakelock mode while syncing"  \
     done
 }
         
-main() {
-# Check for the prescence of log files
-count=`ls -1 blake.conf 2>/dev/null | wc -l`
-if [ $count != 0 ]; then   
-    API_KEY=$(cat "api.conf")
-    echo "api.conf: API Key is set to: $API_KEY"
-    BLAKE_HASH=$(cat "blake.conf")
-    echo "blake.conf: Blake hash is: $BLAKE_HASH"
-    set_configuration
-    start_node
-    sleep 5
-else 
-    # If no .log file - we assume first run
-    first_run 
-    sleep 5
-fi
-
-# Set the configuration file
-   
-# Launch in browser
-#python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
-#python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
-
-# Print to console
-print_console   
-
-}
-
 # Set some environment variables
         set_environment
 
         # pipes initial config > ergo.conf
         set_configuration
         
-        main
+        main_thing
