@@ -121,7 +121,7 @@ Generating unique API key..."
         #export key=$(cat api.conf)
         
         tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
-        sleep 60
+        echo "Node has started... waiting for peers."sleep 60
         areyou_there
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
@@ -129,6 +129,9 @@ Generating unique API key..."
         echo "BLAKE_HASH:$BLAKE_HASH"
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
+        echo "
+Ignore this... Node is restarting"
+        sleep 10
         tmux kill-session -t node_session
 
         # Add blake hash
