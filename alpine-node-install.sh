@@ -70,7 +70,7 @@ fi
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
 # Print to console
-error_log
+#error_log
 print_console   
 
 }
@@ -99,11 +99,11 @@ areyou_there() {
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx1g ergo.jar --mainnet -c ergo.conf'
     sleep 60
-    areyou_there
+    #areyou_there
     echo "
     
 #### Waiting for a response from the server. ####"
-    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1; done;  # wait for node be ready with progress bar
+    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
 
 }
 
@@ -130,7 +130,7 @@ Generating unique API key..."
         
         #export key=$(cat api.conf)
         
-        tmux new-session -d -s node_session 'java -jar Xmx1G ergo.jar --mainnet -c ergo.conf'
+        tmux new-session -d -s node 'java -jar Xmx1G ergo.jar --mainnet -c ergo.conf'
         echo "Node has started... waiting for peers."
         sleep 60
         
@@ -145,7 +145,7 @@ Generating unique API key..."
         echo "
 Ignore this... Node is restarting"
         sleep 10
-        tmux kill-session -t node_session
+        tmux kill-session -t node
 
         # Add blake hash
         set_configuration
