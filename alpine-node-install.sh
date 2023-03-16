@@ -72,7 +72,7 @@ fi
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
 # Print to console
-#error_log
+error_log
 print_console   
 
 }
