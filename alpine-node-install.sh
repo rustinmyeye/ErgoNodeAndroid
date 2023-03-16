@@ -73,14 +73,16 @@ print_console
 
 }
 
-areyou_there(){
-
-IM_HERE=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
-
-if [ $IM_HERE -gt 0 ]; then
+areyou_there() {
+  IM_HERE=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
+  
+  if [ $IM_HERE -gt 0 ]; then
+    return
+  else
+    echo "No peers available. Waiting for 10 seconds..."
     sleep 10
     areyou_there
-fi
+  fi
 }
 
 start_node(){
@@ -118,7 +120,7 @@ Generating unique API key..."
         
         tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
         sleep 60
-        areyou-there
+        areyou_there
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
