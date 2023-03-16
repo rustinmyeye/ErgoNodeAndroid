@@ -22,32 +22,17 @@ set_environment(){
 }
     
 set_configuration(){
-        echo "
-                ergo {
-                    node {
-                        # Full options available at 
-                        # https://github.com/ergoplatform/ergo/blob/master/src/main/resources/application.conf
-                        
-                        mining = false
-                        # Skip validation of transactions in the mainnet before block 417,792 (in v1 blocks).
-                        # Block 417,792 is checkpointed by the protocol (so its UTXO set as well).
-                        # The node still applying transactions to UTXO set and so checks UTXO set digests for each block.
-                        #skipV1TransactionsValidation = true
-                    }
-                }      
-                        
-                scorex {
-                    restApi {
-                        # Hex-encoded Blake2b256 hash of an API key. 
-                        # Should be 64-chars long Base16 string.
-                        # below is the hash of the string 'hello'
-                        # replace with your actual hash 
-                        apiKeyHash = "$BLAKE_HASH"
-                        
-                    }
-                
-                }
-        " > ergo.conf
+        echo "ergo {
+    node {
+        mining = false
+    }
+}
+
+scorex {
+    restApi {
+        apiKeyHash = "$BLAKE_HASH"
+    }
+}" > ergo.conf
 
 }
 
