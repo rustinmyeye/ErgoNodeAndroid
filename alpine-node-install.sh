@@ -53,9 +53,11 @@ main_thing(){
     count=`ls -1 blake.conf 2>/dev/null | wc -l`
     if [ $count != 0 ]; then   
     API_KEY=$(cat "api.conf")
-    echo "api.conf: API Key is set to: $API_KEY"
+    echo "
+api.conf: API Key is set to: $API_KEY"
     BLAKE_HASH=$(cat "blake.conf")
-    echo "blake.conf: Blake hash is: $BLAKE_HASH"
+    echo "
+blake.conf: Blake hash is: $BLAKE_HASH"
     set_configuration
     start_node
     sleep 5
