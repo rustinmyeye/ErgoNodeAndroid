@@ -94,11 +94,9 @@ Generating unique API key..."
         # Add blake hash
         set_configuration
         
-        #start_node
-        #sleep 5
-        curl -s curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-node-install.sh >> node.sh
-        chmod +x node.sh
-        exec sh node.sh
+        main
+    
+        
         
         
         
@@ -152,8 +150,7 @@ error_log(){
         #func_kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
         tmux kill-session -t node_session
-        start_node
-        sleep 5
+        main
         
     fi
 
@@ -235,9 +232,9 @@ For best results please enable wakelock mode while syncing"  \
 }
 
 
-# /
-# main()
-# / 
+
+
+
         
 # Set some environment variables
         set_environment
@@ -245,6 +242,9 @@ For best results please enable wakelock mode while syncing"  \
         # pipes initial config > ergo.conf
         set_configuration
         
+        main
+        
+main() {
 # Check for the prescence of log files
 count=`ls -1 blake.conf 2>/dev/null | wc -l`
 if [ $count != 0 ]; then   
@@ -269,3 +269,5 @@ fi
 
 # Print to console
 print_console   
+
+}
