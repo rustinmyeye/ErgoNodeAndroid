@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                tools:visibility="visible">
 
   <io.neoterm.frontend.session.view.extrakey.ExtraKeysView
     android:id="@+id/extra_keys"
     style="?android:buttonBarStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="0dp"
     android:layout_alignParentBottom="true"
     android:background="@color/terminal_background"
-    android:orientation="horizontal"/>
+    android:orientation="horizontal"
+    android:visibility="invisible" />
 
   <io.neoterm.frontend.session.view.TerminalView
     android:id="@+id/terminal_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_above="@id/extra_keys"
+    android:layout_below="@id/textLink"
     android:background="@color/terminal_background"
     android:fadeScrollbars="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:scrollbars="vertical"/>
+    android:scrollbars="vertical"
+    android:visibility="visible"
+    tools:visibility="visible" />
+
+  <TextView
+    android:id="@+id/textLink"
+    android:layout_width="match_parent"
+    android:layout_height="38dp"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:autoLink="all"
+    android:background="@color/colorPrimaryDark"
+    android:clickable="true"
+    android:fontFamily="@font/prompt_medium"
+    android:gravity="center"
+    android:linksClickable="true"
+    android:text="Ergo Node Panel - http://127.0.0.1:9053/panel"
+    android:textAlignment="center"
+    android:textAllCaps="false"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+    android:textSize="14sp"
+    android:visibility="visible"/>
 
 </RelativeLayout>
