@@ -80,7 +80,7 @@ print_console
 
 areyou_there() {
     IM_HERE=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
-  
+  set_environment
   if [ $IM_HERE -lt 1 ]; then
     echo "No peers available. Waiting for ${PEER_CHECK_INTERVAL} seconds..."
     sleep ${PEER_CHECK_INTERVAL}
