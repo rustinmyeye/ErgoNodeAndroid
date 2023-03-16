@@ -257,7 +257,7 @@ else
 fi
 
 # Set the configuration file
-#set_configuration   
+set_configuration   
 
 # Launch in browser
 #python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
