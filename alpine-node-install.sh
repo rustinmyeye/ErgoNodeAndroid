@@ -86,7 +86,7 @@ areyou_there() {
     sleep ${PEER_CHECK_INTERVAL}
     CHECK_COUNT=$((CHECK_COUNT + 1))
     if [ $CHECK_COUNT -eq $MAX_CHECKS ]; then
-      echo "No peers found after ${MAX_CHECKS} checks. 
+      echo "No peers found after ${MAX_CHECKS} checks."
       tmux kill-server
       set_configuration
       
