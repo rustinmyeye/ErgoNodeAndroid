@@ -18,25 +18,32 @@ set_environment(){
 }
 
 set_configuration (){
-        echo "ergo {
-    directory = ${ergo.directory}"/.ergo"
-    node {
-        mining = false
-    }
-    wallet.secretStorage.secretDir = ${ergo.directory}"/wallet/keystore"
-}
-
-scorex {
-    restApi {
-        # Hex-encoded Blake2b256 hash of an API key. 
-        # Should be 64-chars long Base16 string.
-        # below is the hash of the string 'hello'
-        # replace with your actual hash 
-        apiKeyHash = "$BLAKE_HASH"
-    }
-}" > ergo.conf
-
-}
+        echo "
+                ergo {
+                    node {
+                        # Full options available at 
+                        # https://github.com/ergoplatform/ergo/blob/master/src/main/resources/application.conf
+                        
+                        mining = false
+                        # Skip validation of transactions in the mainnet before block 417,792 (in v1 blocks).
+                        # Block 417,792 is checkpointed by the protocol (so its UTXO set as well).
+                        # The node still applying transactions to UTXO set and so checks UTXO set digests for each block.
+                        skipV1TransactionsValidation = true
+                    }
+                }      
+                        
+                scorex {
+                    restApi {
+                        # Hex-encoded Blake2b256 hash of an API key. 
+                        # Should be 64-chars long Base16 string.
+                        # below is the hash of the string 'hello'
+                        # replace with your actual hash 
+                        apiKeyHash = "$BLAKE_HASH"
+                        
+                    }
+                
+                }
+        " > ergo.conf
 
 main_thing(){
     # Check for the prescence of log files
