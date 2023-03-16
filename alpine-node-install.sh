@@ -105,7 +105,7 @@ start_node(){
     echo "- Node has started... Searching for peers"
     secs=103
 while [ $secs -gt 0 ]; do
-   echo -ne " Wait time remaining: $secs\033[0K\r"
+   echo -ne "- Wait time remaining: $secs\033[0K\r"
    sleep 1
    : $((secs--))
 done
