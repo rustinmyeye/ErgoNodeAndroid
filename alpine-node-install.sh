@@ -51,6 +51,7 @@ set_configuration(){
 }
 
 main_thing(){
+    set_environment
     # Check for the prescence of log files
     count=`ls -1 blake.conf 2>/dev/null | wc -l`
     if [ $count != 0 ]; then   
