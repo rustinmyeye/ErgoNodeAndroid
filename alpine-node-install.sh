@@ -77,12 +77,12 @@ print_console
 
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
+    sleep 60
     echo "
     
 #### Waiting for a response from the server. ####"
-    sleep 31
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && error_log; done;  # wait for node be ready with progress bar
-    
+
 }
 
 # Set basic config for boot, boot & get the hash and then re-set config 
