@@ -103,7 +103,7 @@ areyou_there() {
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx1g ergo.jar --mainnet -c ergo.conf'
     echo "Node has started... Searching for peers"
-    secs=69
+    secs=103
 while [ $secs -gt 0 ]; do
    echo -ne "Wait time remaining: $secs\033[0K\r"
    sleep 1
