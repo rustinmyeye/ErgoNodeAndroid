@@ -101,7 +101,8 @@ areyou_there() {
 
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx1g ergo.jar --mainnet -c ergo.conf'
-    echo "Node has started... waiting for peers"sleep 60
+    echo "Node has started... waiting for peers"
+    sleep 69
     #echo "
     
 #### Waiting for a response from the server. ####"
