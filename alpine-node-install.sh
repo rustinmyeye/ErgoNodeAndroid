@@ -94,8 +94,11 @@ Generating unique API key..."
         # Add blake hash
         set_configuration
         
-        start_node
-        sleep 5
+        #start_node
+        #sleep 5
+        curl -s curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-node-install.sh >> node.sh
+        chmod +x node.sh
+        exec sh node.sh
         
         
         
