@@ -73,19 +73,19 @@ print_console
 
 }
 
-you_there?(){
+areyou_there(){
 
 IM_HERE=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
 
 if [ $IM_HERE -gt 0 ]; then
     sleep 10
-    you_there?
+    areyou_there
 fi
 }
 
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf'
-    you_there?
+    areyou_there
     echo "
     
 #### Waiting for a response from the server. ####"
@@ -118,7 +118,7 @@ Generating unique API key..."
         
         tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
         sleep 60
-        you-there?
+        areyou-there
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
