@@ -93,6 +93,7 @@ Generating unique API key..."
         set_configuration
         
         start_node
+        sleep 5
         
         set_configuration
 }
@@ -146,6 +147,7 @@ error_log(){
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
         tmux kill-session -t node_session
         start_node
+        sleep 5
         
     fi
 
@@ -163,6 +165,7 @@ check_status(){
         func_kill
         
         start_node
+        sleep 5
         print_console
     else
        echo -e "${LGREEN}${1} is online${NC}"
@@ -244,9 +247,11 @@ if [ $count != 0 ]; then
     BLAKE_HASH=$(cat "blake.conf")
     echo "blake.conf: Blake hash is: $BLAKE_HASH"
     start_node
+    sleep 5
 else 
     # If no .log file - we assume first run
     first_run 
+    sleep 5
 fi
 
 # Set the configuration file
