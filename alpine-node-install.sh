@@ -96,7 +96,7 @@ areyou_there() {
         tmux kill-server
         #rm -rf .ergo
         clear
-        first_run
+        main_thing
       else
         echo "No peers found after ${MAX_CHECKS} checks for round $ROUND_COUNT. Starting new round."
         sleep 60
@@ -133,7 +133,7 @@ start_node(){
 first_run() {
 KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
 BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
-set_configuration
+#set_configuration
 ### Download the latest .jar file                                                                    
         if [ ! -e *.jar ]; then 
             echo "- Retrieving latest node release.."
@@ -155,7 +155,7 @@ Generating unique API key..."
         #export key=$(cat api.conf)
         
         tmux new-session -d -s node 'java -jar ergo.jar --mainnet -c ergo.conf'
-        sleep 15
+        sleep 120
         echo "Node has started... getting blake hash."
         
         
