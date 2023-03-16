@@ -98,7 +98,7 @@ Generating unique API key..."
         
         set_configuration
         
-        exec bash 
+        exec bash ergo.sh
 }
 
 func_kill(){
