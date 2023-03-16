@@ -88,6 +88,7 @@ areyou_there() {
       echo "No peers found after ${MAX_CHECKS} checks. Restarting"
       tmux kill-session -t node_session
       set_configuration
+      set_env
       main_thing
     else
       areyou_there
