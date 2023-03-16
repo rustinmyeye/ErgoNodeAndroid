@@ -101,8 +101,8 @@ areyou_there() {
 
 start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx1g ergo.jar --mainnet -c ergo.conf'
-    sleep 60
-    echo "
+    echo "Node has started... waiting for peers"sleep 60
+    #echo "
     
 #### Waiting for a response from the server. ####"
     areyou_there
@@ -134,24 +134,26 @@ Generating unique API key..."
         #export key=$(cat api.conf)
         
         tmux new-session -d -s node_session 'java -jar ergo.jar --mainnet -c ergo.conf'
-        echo "Node has started... waiting for peers."
-        sleep 60
+        echo "Node has started... getting blake hash."
+        sleep 15
         
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
         echo "BLAKE_HASH:$BLAKE_HASH"
         
-        areyou_there
+        #areyou_there
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
         sleep 10
         tmux kill-session -t node_session
 
         # Add blake hash
-        set_configuration
+        #set_configuration
         
-        main_thing
+        #main_thing
+        
+        reboot
     
         
         
