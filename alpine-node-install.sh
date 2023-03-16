@@ -150,7 +150,7 @@ Generating unique API key..."
         #sleep 10
         rm -rf .ergo
         tmux kill-session -t node_session
-
+        clear
         # Add blake hash
         set_configuration
         
