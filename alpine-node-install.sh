@@ -106,7 +106,7 @@ start_node(){
 
 while [ $(date +%s) -lt $end_time ]; do
     PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount'));")
-    echo -ne "Number of connected peers: $PEERS"
+    echo -ne "Number of connected peers: $PEERS"'\r'
 done
         echo "
         "
@@ -142,7 +142,7 @@ Generating unique API key..."
         tmux new-session -d -s node 'java -jar ergo.jar --mainnet -c ergo.conf'
         echo "- Node has started... Setting blake hash and finding peers"
         if ! ping -c 1 http://localhost:9053/info &> /dev/null; then
-        echo "No peers connected"
+        echo "No peers connected yet"
         sleep 20
         clear
     fi
@@ -151,7 +151,7 @@ Generating unique API key..."
 
 while [ $(date +%s) -lt $end_time ]; do
     PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount'));")
-    echo -ne "Number of connected peers: $PEERS"
+    echo -ne "Number of connected peers: $PEERS"'\r'
 done
         
         echo "
