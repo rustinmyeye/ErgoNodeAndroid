@@ -21,7 +21,11 @@ The app will begin getting things ready to install the node.
 
 Now allow access to internal storage. Press "allow".
 
-At this point the app will continue downloading all the necessary components to start the node. You will know its running when it says - "The node is now syncing" "Starting the node..."
+At this point the app will continue downloading all the necessary components to start the node. 
+
+On the first run, the app will generate a unique API key, blake hash, configuration file, and start the node!
+
+On every other startup, the app check the configuration file, and starts the node.
 
 ## Acessing the node panel
 
