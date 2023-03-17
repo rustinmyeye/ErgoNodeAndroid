@@ -144,7 +144,6 @@ Generating unique API key..."
         if ! ping -c 1 http://localhost:9053/info &> /dev/null; then
         echo "No peers connected yet"
         sleep 20
-        clear
     fi
         
     end_time=$(($(date +%s) + 100))
