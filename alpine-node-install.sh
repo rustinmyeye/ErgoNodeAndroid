@@ -303,9 +303,10 @@ Sync Progress;"\
         wget -q --spider http://google.com
 
         if [ $? -eq 0 ]; then
-            echo "Online"
+            echo ""
         else
-            echo "Offline"
+            echo "You are not connected to the internet!"
+            print_console
     fi
     
         error_log
