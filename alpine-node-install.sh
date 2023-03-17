@@ -299,10 +299,14 @@ Sync Progress;"\
         
         echo ""
         
-        if ! ping -c 1 https://www.google.com &> /dev/null; then
-        echo "You are not connected to the internet!"
-        print_console
+        wget -q --spider http://google.com
+
+        if [ $? -eq 0 ]; then
+            echo "Online"
+        else
+            echo "Offline"
     fi
+    
         error_log
         dt=$(date '+%d/%m/%Y %H:%M:%S');
         echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT:$HEIGHT" >> height.log
