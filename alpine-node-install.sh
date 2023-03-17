@@ -292,6 +292,10 @@ Sync Progress;"\
         
         echo ""
         
+        if ! ping -c 1 google.com &> /dev/null; then
+        echo "You are not connected to the internet!"
+        print_console
+    fi
         error_log
         dt=$(date '+%d/%m/%Y %H:%M:%S');
         echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT:$HEIGHT" >> height.log
