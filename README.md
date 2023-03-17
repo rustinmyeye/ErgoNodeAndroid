@@ -5,6 +5,9 @@ Setup instructions [here](https://github.com/rustinmyeye/ErgoNodeAndroid/blob/ma
 
 An attempt at a one click Ergo node app for Android. I'm not sure what im doing...
 
+Im not sure why, but for some reason any node I setup womt
+sync unless im using a vpn... not sure whats up with that.
+
 
 ![alt text](https://raw.githubusercontent.com/rustinmyeye/ErgoMixerAndroid/main/artwork/c.png)
 
