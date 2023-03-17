@@ -8,6 +8,15 @@ An attempt at a one click Ergo node app for Android. I'm not sure what im doing.
 
 ![alt text](https://raw.githubusercontent.com/rustinmyeye/ErgoMixerAndroid/main/artwork/c.png)
 
+To Do
+=======
+
+- make ui look better and work in all devices
+- remove unsused parts from neotern maybe?
+- include install scripts in apk maybe
+- create menu with hep links, config editor and allow user to create their own API key through menu.
+- inclue mixer as an opsional install. It can run alongside the node... and use custom config file maybe
+
 Credits
 =======
 
@@ -17,9 +26,6 @@ Im using a bunch of parts from Glasgow's Ergo Node setup scripts. [Mark Glasgow]
 
 also - [proot-distro](https://github.com/termux/proot-distro), [Alpine Linux](https://www.alpinelinux.org/), [Ergo Protocol refence client](https://github.com/ergoplatform/ergo/releases)
 
-To Do
-=======
 
-- make "shut down the node" button maybe. the node cam become corrupted if you kill from in android
 
 
