@@ -106,7 +106,7 @@ start_node(){
 
 while [ $(date +%s) -lt $end_time ]; do
     PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount'));")
-    echo -n "Number of connected peers: $PEERS" && echo ""
+    echo -ne "Number of connected peers: $PEERS"
 done
         echo "
         "
@@ -151,7 +151,7 @@ Generating unique API key..."
 
 while [ $(date +%s) -lt $end_time ]; do
     PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount'));")
-    echo -n "Number of connected peers: $PEERS" && echo ""
+    echo -ne "Number of connected peers: $PEERS"
 done
         
         echo "
