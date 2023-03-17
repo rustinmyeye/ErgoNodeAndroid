@@ -299,7 +299,7 @@ Sync Progress;"\
         
         echo ""
         
-        if ! ping -c 1 google.com &> /dev/null; then
+        if ! ping -c 1 https://www.google.com &> /dev/null; then
         echo "You are not connected to the internet!"
         print_console
     fi
