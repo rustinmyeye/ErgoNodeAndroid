@@ -102,12 +102,12 @@ start_node(){
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1; done;  # wait for node be ready with progress bar
     
     echo "- Node has started... Searching for peers"
-    secs=123
-    while [ $secs -gt 0 ]; do
-       echo -ne "- Wait time remaining: $secs\033[0K\r"
-       sleep 1
-       : $((secs--))
-        done
+    end_time=$(($(date +%s) + 120))
+
+while [ $(date +%s) -lt $end_time ]; do
+    PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
+    echo "Number of connected peers: $PEERS"
+done
         echo "
         "
     areyou_there
@@ -140,13 +140,15 @@ Generating unique API key..."
         #export key=$(cat api.conf)
         
         tmux new-session -d -s node 'java -jar ergo.jar --mainnet -c ergo.conf'
-        echo "- Node has started... Setting blake hash"
-    secs=123
-    while [ $secs -gt 0 ]; do
-       echo -ne "- Wait time remaining: $secs\033[0K\r"
-       sleep 1
-       : $((secs--))
-        done
+        echo "- Node has started... Setting blake hash and finding peers"
+    end_time=$(($(date +%s) + 120))
+
+while [ $(date +%s) -lt $end_time ]; do
+    PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
+    echo "
+Number of connected peers: $PEERS"
+done
+        
         echo "
         "
         
