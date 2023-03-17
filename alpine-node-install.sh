@@ -140,10 +140,15 @@ Generating unique API key..."
         #export key=$(cat api.conf)
         
         tmux new-session -d -s node 'java -jar ergo.jar --mainnet -c ergo.conf'
-        sleep 120
-        echo "Node has started... getting blake hash."
-        
-        
+        echo "- Node has started... Setting blake hash"
+    secs=123
+    while [ $secs -gt 0 ]; do
+       echo -ne "- Wait time remaining: $secs\033[0K\r"
+       sleep 1
+       : $((secs--))
+        done
+        echo "
+        "
         
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
@@ -278,7 +283,7 @@ Your unique API key is: $API_KEY"  \
         "
 For best results please enable wakelock mode while syncing"  \
         "
-        Sync Progress;"\
+Sync Progress;"\
         "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ### "\
         "### Blocks:  ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ### "
         
