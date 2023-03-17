@@ -11,6 +11,9 @@ An attempt at a one click Ergo node app for Android. I'm not sure what im doing.
 To Do
 =======
 
+- figure out android memory management
+- reimplement automatic java heap size setup for the node in the install script
+- maybe setup swap space in alpine linux? dunno if that helps
 - make ui look better and work in all devices
 - remove unsused parts from neotern maybe?
 - include install scripts in apk maybe
