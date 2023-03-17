@@ -101,7 +101,7 @@ start_node(){
     tmux new-session -d -s node_session 'java -jar -Xmx2g ergo.jar --mainnet -c ergo.conf'
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1; done;  # wait for node be ready with progress bar
     
-    echo "- Node has started... Searching for peers"
+    echo "- Node has started. Searching for peers..."
     end_time=$(($(date +%s) + 120))
 
 while [ $(date +%s) -lt $end_time ]; do
@@ -121,7 +121,7 @@ BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
 #set_configuration
 ### Download the latest .jar file                                                                    
         if [ ! -e *.jar ]; then 
-            echo "- Retrieving latest node release.."
+            echo "- Retrieving latest node release."
             LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
             LATEST_ERGO_RELEASE_NUMBERS=$(echo ${LATEST_ERGO_RELEASE} | cut -c 2-)
             ERGO_DOWNLOAD_URL=https://github.com/ergoplatform/ergo/releases/download/${LATEST_ERGO_RELEASE}/ergo-${LATEST_ERGO_RELEASE_NUMBERS}.jar
