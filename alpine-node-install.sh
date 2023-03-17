@@ -143,11 +143,11 @@ Generating unique API key..."
         echo "- Node has started... Setting blake hash and finding peers"
         if ! ping -c 1 http://localhost:9053/info &> /dev/null; then
         echo "No peers connected"
-        sleep 10
+        sleep 20
         clear
     fi
         
-    end_time=$(($(date +%s) + 120))
+    end_time=$(($(date +%s) + 100))
 
 while [ $(date +%s) -lt $end_time ]; do
     PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount'));")
