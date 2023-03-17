@@ -62,13 +62,6 @@ error_log
 print_console   
 
 }
-ping_node(){
-    if ! ping -c 1 http://localhost:9053/info &> /dev/null; then
-        echo "No peers connected"
-        sleep 1
-        ping_node
-    fi
-}
 
 areyou_there() {
   IM_HERE=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount', None));")
@@ -148,7 +141,11 @@ Generating unique API key..."
         
         tmux new-session -d -s node 'java -jar ergo.jar --mainnet -c ergo.conf'
         echo "- Node has started... Setting blake hash and finding peers"
-        ping_node
+        if ! ping -c 1 http://localhost:9053/info &> /dev/null; then
+        echo "No peers connected"
+        sleep 10
+        clear
+    fi
         
     end_time=$(($(date +%s) + 120))
 
@@ -297,7 +294,6 @@ Sync Progress;"\
         "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ### "\
         "### Blocks:  ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ### "
         
-        ping_node
         
         PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
         echo "Number of connected peers:$PEERS"
