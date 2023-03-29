@@ -11,7 +11,7 @@ An attempt at a one click Ergo node app for Android. I'm not sure what im doing.
 Im currently working on
 =======
 
-The release available right now is just a sketchy proof of concept I guess... the app id is still tied to neoterm as well as the inital bootdtrap.
+The release available [here](https://github.com/rustinmyeye/ErgoNodeAndroid/releases/tag/v0.1.3) is just a sketchy proof of concept I guess... the app id is still tied to neoterm as well as the inital bootdtrap.
 
 In the version im working on right now, I have refactored all occurrnces of neoterm in the app to ergonode, as well as updated the JNI library with the new name, and created a new bootstrap file system that works with the new name.
 
