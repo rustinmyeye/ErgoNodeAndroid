@@ -13,7 +13,7 @@ Im currently working on
 
 The release available right now is just a sketchy proof of concept I guess... the app id is still tied to neoterm as well as the inital bootdtrap.
 
-I have refactored all occurrnces of neoterm in the app to ergonode, as well as updated the JNI library with the new name, and created a new bootstrap file system that works with the new name.
+In the version im working on right now, I have refactored all occurrnces of neoterm in the app to ergonode, as well as updated the JNI library with the new name, and created a new bootstrap file system that works with the new name.
 
 I am still working on tje bootsrap file. Im having some problems with Symlinks I think... some things are not happy with the new io.ergonode directory even though I thought I updated them... still figuring it out slowly.
 
