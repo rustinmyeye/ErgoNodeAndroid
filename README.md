@@ -32,6 +32,7 @@ To Do
 - include install scripts in apk maybe
 - create menu with hep links, config editor and allow user to create their own API key through menu.
 - inclue mixer as an opsional install. It can run alongside the node... and use custom config file maybe
+- move bootstrap.zip to this repo
 
 Credits
 =======
