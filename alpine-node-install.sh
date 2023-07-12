@@ -28,7 +28,7 @@ set_configuration(){
   ...
     utxo {
         # Download and apply UTXO set snapshot and full-blocks after that
-        utxoBootstrap = false
+        utxoBootstrap = true
 
         # how many utxo set snapshots to store, 0 means that they are not stored at all
         storingUtxoSnapshots = 2
