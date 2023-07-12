@@ -38,7 +38,6 @@ utxo {
         # how many utxo set snapshots for a height with same id we need to find in p2p network
         # in order to start downloading it
         p2pUtxoSnapshots = 2
-    }
   }
 
 scorex {
