@@ -38,7 +38,6 @@ set_configuration(){
         p2pUtxoSnapshots = 2
     }
   }
-}
 
 scorex {
     restApi {
