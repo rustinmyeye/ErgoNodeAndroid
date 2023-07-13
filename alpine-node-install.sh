@@ -24,17 +24,16 @@ set_environment(){
 set_configuration(){
         echo "ergo {
  node {
-   mining = false
     utxo {
         # Download and apply UTXO set snapshot and full-blocks after that
         utxoBootstrap = true
 
         # how many utxo set snapshots to store, 0 means that they are not stored at all
-        storingUtxoSnapshots = 2
+        storingUtxoSnapshots = 0
 
         # how many utxo set snapshots for a height with same id we need to find in p2p network
         # in order to start downloading it
-        p2pUtxoSnapshots = 2
+        p2pUtxoSnapshots = 1
     }
   }
 }
