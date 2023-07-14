@@ -95,7 +95,7 @@ areyou_there() {
       ROUND_COUNT=$((ROUND_COUNT + 1))
       if [ $ROUND_COUNT -eq 3 ]; then
         echo "No peers found after ${MAX_CHECKS} checks for 3 rounds. Killing process and restarting."
-        tmux kill-server
+        tmux kill-session -t node_session
         #rm -rf .ergo
         clear
         main_thing
@@ -182,7 +182,7 @@ done
         
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
         sleep 10
-        tmux kill-server
+        tmux kill-session -t node_session
         #rm -rf .ergo
         clear
         # Add blake hash
@@ -208,7 +208,7 @@ func_kill(){
         #kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
         sleep 10
-        tmux kill-server
+        tmux kill-session -t node_session
         sleep 10
         ;;
     *) #Other
@@ -216,7 +216,7 @@ func_kill(){
         #kill -9 $(lsof -t -i:9030)
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
         sleep 10
-        tmux kill-server
+        tmux kill-session -t node_session
         sleep 10
         ;;
     esac
@@ -243,7 +243,7 @@ error_log(){
         echo i: $i
         #func_kill
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $API_KEY"
-        tmux kill-server
+        tmux kill-session -t node_session
         main_thing
         
     fi
