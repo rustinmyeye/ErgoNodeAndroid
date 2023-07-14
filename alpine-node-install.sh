@@ -1,5 +1,12 @@
 #!/bin/bash
 
+echo "- Retrieving latest node release."
+            LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
+            LATEST_ERGO_RELEASE_NUMBERS=$(echo ${LATEST_ERGO_RELEASE} | cut -c 2-)
+            ERGO_DOWNLOAD_URL=https://github.com/ergoplatform/ergo/releases/download/${LATEST_ERGO_RELEASE}/ergo-${LATEST_ERGO_RELEASE_NUMBERS}.jar
+            echo "- Downloading Latest known Ergo release: ${LATEST_ERGO_RELEASE}."
+            curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
+
 export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
        PEER_CHECK_INTERVAL=10
        MAX_CHECKS=6
