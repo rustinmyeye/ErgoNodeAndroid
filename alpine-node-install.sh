@@ -60,7 +60,7 @@ main_thing(){
     if [ $count != 0 ]; then   
     API_KEY=$(cat "api.conf")
     echo "
-  Configuration is ok"
+  Configuration is ok. Starting up..."
     BLAKE_HASH=$(cat "blake.conf")
     echo "
 "
