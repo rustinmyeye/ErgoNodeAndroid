@@ -36,11 +36,11 @@ set_configuration(){
         utxoBootstrap = true
 
         # how many utxo set snapshots to store, 0 means that they are not stored at all
-        storingUtxoSnapshots = 0
+        storingUtxoSnapshots = 2
 
         # how many utxo set snapshots for a height with same id we need to find in p2p network
         # in order to start downloading it
-        p2pUtxoSnapshots = 1
+        p2pUtxoSnapshots = 2
     }
   }
 }
