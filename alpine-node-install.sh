@@ -148,7 +148,7 @@ Generating unique API key..."
 
         #export key=$(cat api.conf)
 
-        tmux new-session -d -s node 'java -jar ergo.jar --mainnet -c ergo.conf'
+        tmux new-session -d -s new_session 'java -jar ergo.jar --mainnet -c ergo.conf'
         echo "- Node has started... Setting blake hash and finding peers"
         if ! ping -c 1 http://localhost:9053/info &> /dev/null; then
         echo "
@@ -174,7 +174,7 @@ done
 
         curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
         sleep 10
-        tmux kill-session -t node_session
+        tmux kill-session -t new_session
         #rm -rf .ergo
         clear
         # Add blake hash
