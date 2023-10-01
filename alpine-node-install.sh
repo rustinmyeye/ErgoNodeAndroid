@@ -1,6 +1,10 @@
 
 #!/bin/bash
 
+
+tmux kill-session -t node_session
+clear
+
 echo "- Retrieving latest node release."
             LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
             LATEST_ERGO_RELEASE_NUMBERS=$(echo ${LATEST_ERGO_RELEASE} | cut -c 2-)
