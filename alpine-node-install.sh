@@ -14,7 +14,7 @@ echo "- Retrieving latest node release."
 
 export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
        PEER_CHECK_INTERVAL=10
-       MAX_CHECKS=6
+       MAX_CHECKS=2
        CHECK_COUNT=0
        ROUND_COUNT=0
 # Set some environment variables
@@ -300,8 +300,7 @@ print_console(){
         "View the Ergo node panel at 127.0.0.1:9053/panel"\
         "
 Your unique API key is: $API_KEY"  \
-        "
-For best results please enable wakelock mode while syncing"  \
+        " "  \
         "
 Sync Progress;"\
         "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ### "\
