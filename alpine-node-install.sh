@@ -67,47 +67,8 @@ else
     first_run 
 fi
 
-# Launch in browser
-#python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/panel 
-#python${ver:0:1} -mwebbrowser http://127.0.0.1:9053/info 
-# Print to console
-error_log
 print_console   
 
-}
-
-areyou_there() {
-  IM_HERE=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount', None));")
-
-  if [ -z "$IM_HERE" ]; then
-    echo "No response from server. Waiting for ${PEER_CHECK_INTERVAL} seconds..."
-    sleep ${PEER_CHECK_INTERVAL}
-    areyou_there
-  elif [ $IM_HERE -lt 1 ]; then
-    echo "No peers available. Waiting for ${PEER_CHECK_INTERVAL} seconds..."
-    sleep ${PEER_CHECK_INTERVAL}
-    CHECK_COUNT=$((CHECK_COUNT + 1))
-    if [ $CHECK_COUNT -eq $MAX_CHECKS ]; then
-      ROUND_COUNT=$((ROUND_COUNT + 1))
-      if [ $ROUND_COUNT -eq 3 ]; then
-        echo "No peers found after ${MAX_CHECKS} checks for 3 rounds. Killing process and restarting."
-        tmux kill-session -t node_session
-        #rm -rf .ergo
-        clear
-        main_thing
-      else
-        echo "No peers found after ${MAX_CHECKS} checks for round $ROUND_COUNT. Starting new round."
-        sleep 60
-        CHECK_COUNT=0
-        areyou_there
-      fi
-    else
-      areyou_there
-    fi
-  else
-    echo " Found $IM_HERE peers!"
-    sleep 2
-  fi
 }
 
 start_node(){
@@ -123,7 +84,6 @@ while [ $(date +%s) -lt $end_time ]; do
 done
         echo "
         "
-    areyou_there
 
 }
 
@@ -254,9 +214,8 @@ check_status(){
     string=$(curl -sf --max-time 20 "${1}")
 
     if [ -z "$string" ]; then
-        echo -e "${LRED}${1} is down${NC}"
-        func_kill
-
+        echo -e "${LRED}${1} is down${NC}"        
+        tmux kill-session -t node_session
         main_thing
     else
        echo -e "${LGREEN}${1} is online${NC}"
@@ -321,7 +280,6 @@ Sync Progress;"\
             print_console
     fi
 
-        error_log
         dt=$(date '+%d/%m/%Y %H:%M:%S');
         echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT:$HEIGHT" >> height.log
 
