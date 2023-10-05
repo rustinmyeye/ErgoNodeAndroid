@@ -21,17 +21,11 @@ I will start on the "to do" list once this is done, and the app identifies prope
 
 To Do
 =======
-
-- Im not sure why, but for some reason any node I setup womt sync unless im using a vpn... not sure whats up with that.
+- fine tune the install script and implement error handling
+- include options for light node or full node
 - I want to inlude most of the downloads and apps into the initial bootstrap.zip
-- figure out android memory management
-- reimplement automatic java heap size setup for the node in the install script
-- maybe setup swap space in alpine linux? dunno if that helps
-- make ui look better and work in all devices
 - remove unsused parts from neotern maybe?
-- include install scripts in apk maybe
 - create menu with hep links, config editor and allow user to create their own API key through menu.
-- inclue mixer as an opsional install. It can run alongside the node... and use custom config file maybe
 - move bootstrap.zip to this repo
 
 Credits
