@@ -1,3 +1,5 @@
+THIS DOESNT WORK ANYMORE
+
 Ergo Node for Android
 =======
 
