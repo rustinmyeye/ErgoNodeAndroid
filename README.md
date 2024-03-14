@@ -1,5 +1,7 @@
 THIS DOESNT WORK ANYMORE
 
+it is better to run the node in termux! 
+
 Ergo Node for Android
 =======
 
