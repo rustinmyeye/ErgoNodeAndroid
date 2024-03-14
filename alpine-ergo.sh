@@ -8,7 +8,7 @@ get_download_url() {
 
         case "$DISTRO_ARCH" in
                 aarch64)
-                        rootfs="https://github.com/termux/proot-distro/releases/download/v1.2-alpine-rootfs/alpine-minirootfs-3.13.1-aarch64.tar.gz"
+                        rootfs="https://github.com/termux/proot-distro/releases/download/v3.18.1/alpine-aarch64-pd-v3.18.1-r2.tar.xz"
                         sha256="0e8258cc599a86be428228dd5ea9217959f2c77873790bec645c05899f252c5e"
                         ;;
                 armv7l|armv8l)
