@@ -5,15 +5,15 @@
 
 #install dependencies
 
-pkg install -y bash bzip2 coreutils curl  findutils gzip ncurses-utils proot tar xz-utils
+#pkg install -y bash bzip2 coreutils curl  findutils gzip ncurses-utils proot tar xz-utils
 
 #download git and install proot-distro
 
-pkg install -y git
-git clone https://github.com/termux/proot-distro
-cd proot-distro
-./install.sh
-clear
+pkg install -y proot-distro
+#git clone #https://github.com/termux/proot-distro
+#cd proot-distro
+#./install.sh
+#clear
 
 #download alpine-ergo.sh setup plugin for proot-distro
 
