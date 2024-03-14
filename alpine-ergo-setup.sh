@@ -1,10 +1,10 @@
 #!/bin/bash
 
-apt update -y
-apt upgrade -y
+#apt update -y
+#apt upgrade -y
 
 #download proot-distro
-apt install proot-distro -y
+pkg add proot-distro -y
 clear
 
 #download alpine-ergo.sh setup plugin for proot-distro
