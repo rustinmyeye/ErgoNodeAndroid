@@ -3,7 +3,11 @@
 #apt update -y
 #apt upgrade -y
 
-#download git abd install proot-distro
+#install dependencies
+
+pkg install -y bash bzip2 coreutils curl  findutils gzip ncurses-utils proot se tar xz-utils
+
+#download git and install proot-distro
 
 pkg install git
 git clone https://github.com/termux/proot-distro
