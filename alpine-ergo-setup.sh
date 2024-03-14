@@ -5,7 +5,7 @@
 
 #install dependencies
 
-pkg install -y bash bzip2 coreutils curl  findutils gzip ncurses-utils proot se tar xz-utils
+pkg install -y bash bzip2 coreutils curl  findutils gzip ncurses-utils proot tar xz-utils
 
 #download git and install proot-distro
 
