@@ -9,10 +9,11 @@ pkg install -y bash bzip2 coreutils curl  findutils gzip ncurses-utils proot tar
 
 #download git and install proot-distro
 
-pkg install git
+pkg install -y git
 git clone https://github.com/termux/proot-distro
 cd proot-distro
-./install.shclear
+./install.sh
+clear
 
 #download alpine-ergo.sh setup plugin for proot-distro
 
