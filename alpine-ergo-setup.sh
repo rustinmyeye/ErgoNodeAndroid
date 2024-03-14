@@ -1,5 +1,8 @@
 #!/bin/bash
 
+apt update -y
+apt upgrade -y
+
 #download proot-distro
 apt install proot-distro -y
 clear
