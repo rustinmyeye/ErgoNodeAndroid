@@ -47,13 +47,13 @@ echo "Symlinking $TERMUX_PREFIX/share/bash-completion/completions/proot-distro -
 ln -sfr "$TERMUX_PREFIX"/share/bash-completion/completions/proot-distro "$TERMUX_PREFIX"/share/bash-completion/completions/pd
 
 echo "Installing $TERMUX_PREFIX/share/doc/proot-distro/README.md"
-install -Dm600 README.md "$TERMUX_PREFIX"/share/doc/proot-distro/README.md" >> install.sh
+install -Dm600 README.md "$TERMUX_PREFIX"/share/doc/proot-distro/README.md" >> install
 
-chmod +x install.sh
-./install.sh
+chmod +x install
+./install
 clear
 
-#download alpine-ergo.sh setup plugin for proot-distro
+#download alpine-ergo.sh setup plugin forproot-distro
 
 cd ..
 cd usr
