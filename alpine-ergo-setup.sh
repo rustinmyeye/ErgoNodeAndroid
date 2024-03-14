@@ -3,9 +3,12 @@
 #apt update -y
 #apt upgrade -y
 
-#download proot-distro
-pkg add proot-distro -y
-clear
+#download git abd install proot-distro
+
+pkg install git
+git clone https://github.com/termux/proot-distro
+cd proot-distro
+./install.shclear
 
 #download alpine-ergo.sh setup plugin for proot-distro
 cd ..
