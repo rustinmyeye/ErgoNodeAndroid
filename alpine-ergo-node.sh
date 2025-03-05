@@ -39,15 +39,9 @@ set_environment(){
 
 set_configuration(){
         echo "ergo {
-  node {
-        utxo {
-           utxoBootstrap = true
-        }
-        nipopow {
-           nipopowBootstrap = true
-           p2pNipopows = 2
-        }
-   }  
+    node {
+        mining = false
+    }
 }
   
  scorex { 
