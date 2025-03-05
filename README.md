@@ -16,7 +16,7 @@ This is a fork of [NeoTerm](https://github.com/NeoTerrm/NeoTerm)
 
 Im using a bunch of parts from Glasgow's Ergo Node setup scripts. [Mark Glasgow](https://github.com/glasgowm148/ergoscripts)
 
-also - [alpine-proot](https://github.com/Yonle/alpine-proot)), [Alpine Linux](https://www.alpinelinux.org/), [Ergo Protocol refence client](https://github.com/ergoplatform/ergo/releases)
+also - [alpine-proot](https://github.com/Yonle/alpine-proot), [Alpine Linux](https://www.alpinelinux.org/), [Ergo Protocol refence client](https://github.com/ergoplatform/ergo/releases)
 
 
 
