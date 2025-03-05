@@ -5,6 +5,7 @@ Setup instructions [here](https://github.com/rustinmyeye/ErgoNodeAndroid/blob/ma
 
 An attempt at a one click Ergo node app for Android. This app is based on neoterm, and runs automated install scripts to setup and run an Ergo node on Android. 
 
+The current version of this app setus up a stateless light node, and it syncs very quickly. I will make a release for full node setup shortly.
 
 ![alt text](https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/artwork/ic_launcher_round.png)
 
