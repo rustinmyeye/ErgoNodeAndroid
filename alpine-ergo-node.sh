@@ -75,7 +75,7 @@ print_console
 }
 
 start_node(){
-    tmux new-session -d -s node_session 'java -jar -Xmx1g ergo.jar --mainnet -c ergo.conf'
+    tmux new-session -d -s node_session 'java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf'
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1; done;  # wait for node be ready with progress bar
 
     echo "- Node has started. Searching for peers..."
