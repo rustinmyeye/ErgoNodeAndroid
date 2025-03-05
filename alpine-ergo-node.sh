@@ -38,12 +38,11 @@ set_environment(){
 }
 
 set_configuration(){
-        echo "ergo { 
-    networkType = "mainnet" 
-    node.stateType = "digest" 
-    node.blocksToKeep = 1440 
-    node.nipopow.nipopowBootstrap = true     
- } 
+        echo "ergo {
+    node {
+        mining = false
+    }
+}
   
  scorex { 
      restApi { 
