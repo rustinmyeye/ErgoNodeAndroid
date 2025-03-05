@@ -34,13 +34,17 @@ set_environment(){
 }
 
 set_configuration(){
-        echo "ergo { 
-    networkType = "mainnet" 
-    node.stateType = "digest" 
-    node.blocksToKeep = 1440 
-    node.nipopow.nipopowBootstrap = true     
- } 
-  
+        echo "ergo {
+  node {
+        utxo {
+           utxoBootstrap = true
+        }
+        nipopow {
+           nipopowBootstrap = true
+           p2pNipopows = 2
+        }
+   }  
+}
  scorex { 
      restApi { 
          apiKeyHash = "$BLAKE_HASH" 
