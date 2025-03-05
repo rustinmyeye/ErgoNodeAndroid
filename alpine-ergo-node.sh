@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #download things
 echo "Downloading stuff... please wait :)"
@@ -13,3 +13,4 @@ cd profile.d
 curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-node-install.sh >> ergo.sh
 chmod +x ergo.sh
 clear
+./ergo.sh
