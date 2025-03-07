@@ -46,10 +46,6 @@ set_configuration(){
  } 
   
  scorex { 
-     network {
-         maxConnections = 1000
-         nodeName = "Android-Node - "${scorex.network.appVersion}
-}
      restApi { 
          apiKeyHash = "$BLAKE_HASH" 
      } 
