@@ -5,7 +5,6 @@ echo "Downloading stuff... please wait :)"
 #apk --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ add android-tools --quiet
 apk add openjdk11 python3 wget tmux curl --quiet
 
-
 tmux kill-session -t node_session
 clear
 
@@ -38,15 +37,15 @@ set_environment(){
 }
 
 set_configuration(){
-        echo "ergo {
-  networkType = "mainnet"
-  node.stateType = "digest"
-  node.blocksToKeep = 1440
-  node.nipopow.nipopowBootstrap = true
-}
-
-scorex {
-  restApi { 
+        echo "ergo { 
+    networkType = "mainnet" 
+    node.stateType = "digest" 
+    node.blocksToKeep = 1440 
+    node.nipopow.nipopowBootstrap = true     
+ } 
+  
+ scorex { 
+     restApi { 
          apiKeyHash = "$BLAKE_HASH" 
      } 
  }" > ergo.conf
