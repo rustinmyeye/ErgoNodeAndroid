@@ -76,7 +76,7 @@ print_console
 }
 
 start_node(){
-    tmux new-session -d -s node_session 'java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf'
+    tmux new-session -d -s node_session 'java -jar -Xmx2g ergo.jar --mainnet -c ergo.conf'
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1; done;  # wait for node be ready with progress bar
 
     echo "- Node has started. Searching for peers..."
@@ -116,7 +116,7 @@ Generating unique API key..."
 
         #export key=$(cat api.conf)
 
-        tmux new-session -d -s new_session 'java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf'
+        tmux new-session -d -s new_session 'java -jar ergo.jar --mainnet -c ergo.conf'
         echo "- Node has started... Setting blake hash and finding peers"
         if ! ping -c 1 http://localhost:9053/info &> /dev/null; then
         echo "
@@ -299,4 +299,3 @@ Sync Progress;"\
         set_configuration
 
         main_thing
-
