@@ -38,15 +38,18 @@ set_environment(){
 }
 
 set_configuration(){
-        echo "ergo { 
-    networkType = "mainnet" 
-    node.stateType = "digest" 
-    node.blocksToKeep = 1440 
-    node.nipopow.nipopowBootstrap = true     
- } 
-  
- scorex { 
-     restApi { 
+        echo "ergo {
+  networkType = "mainnet"
+  node.stateType = "digest"
+  node.blocksToKeep = 1440
+  node.nipopow.nipopowBootstrap = true
+}
+
+scorex {
+  network {
+    nodeName = "Android-Node-${scorex.network.appVersion}"
+  }
+  restApi { 
          apiKeyHash = "$BLAKE_HASH" 
      } 
  }" > ergo.conf
