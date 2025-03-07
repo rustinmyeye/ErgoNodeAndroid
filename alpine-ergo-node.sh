@@ -38,13 +38,18 @@ set_environment(){
 }
 
 set_configuration(){
-        echo "ergo {
-    node {
-        mining = false
-    }
-}
+        echo "ergo { 
+    networkType = "mainnet" 
+    node.stateType = "digest" 
+    node.blocksToKeep = 1440 
+    node.nipopow.nipopowBootstrap = true     
+ } 
   
  scorex { 
+     network {
+         maxConnections = 1000
+         nodeName = "Android-Node - "${scorex.network.appVersion}
+}
      restApi { 
          apiKeyHash = "$BLAKE_HASH" 
      } 
