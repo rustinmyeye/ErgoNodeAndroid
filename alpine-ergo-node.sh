@@ -46,9 +46,6 @@ set_configuration(){
 }
 
 scorex {
-  network {
-    nodeName = "Android-Node-${scorex.network.appVersion}"
-  }
   restApi { 
          apiKeyHash = "$BLAKE_HASH" 
      } 
