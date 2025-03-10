@@ -4,7 +4,7 @@
 
 This app is intended to be run on aarch64 based Android devices with minimum system requirements of:
 * Android OS of version 7.0 or higher
-* minimum of 25 GB of internal storage available
+* minimum of 1 GB of internal storage available
 * minimum of 3GB ram total 
 
 So far, this has been tested and is working well on a Samsung Galaxy S8+ and a Google Pixel 6a.
@@ -31,6 +31,8 @@ On every other startup, the app check the configuration file, and starts the nod
 
 To monitor the progress of the node you can visit (in a browser on the device) the Ergo node panel at - https://127.0.0.1:9053/panel. Alternatively, you can monitor progress from another device by replacing 127.0.0.1 with the local or port forwarded public ip of the device running the node.
 
+
+<!--
 ## Blockchain synchronization
 
 The first sync of the node can take a long time. For example, on a Samsung Galaxy S8+, the sync took ~ 2 days to complete. 
@@ -46,3 +48,5 @@ In the Ergo Mobile Wallet, simply enter https://127.0.0.1:9053/ in the "node and
 ## Shutting the node down
 
 There is no convenient way to shut the node down curently. To shut it down you must enter the Ergo Node app, touch the terminal to bring upt the keyboard, and press "`ctrl + c`"
+
+-->
