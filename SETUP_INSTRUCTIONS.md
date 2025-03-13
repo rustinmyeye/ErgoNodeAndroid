@@ -27,6 +27,19 @@ So far, this has been tested and works well on a **Google Pixel 6a**.
 
 8. On subsequent runs, the app will check the existing configuration file and simply start the node.
 
+## Memory-Based Node Selection
+
+During setup, the script will check the total and available system memory to determine which type of node to run:
+
+- If the device has **more than 5GB of total RAM**, it will run the **NiPoPoW Ergo Node**.
+- If the total RAM is **5GB or less**, it will check available memory:
+  - If **more than 1.8GB is available**, it will still run the **NiPoPoW Ergo Node**.
+  - If **less than 1.8GB is available**, it will switch to the **Stateless Ergo Node**, which requires fewer resources.
+
+Before installation, the script displays the total memory, available memory, and which node type will be used. 
+
+This ensures that devices with lower system memory can still run an Ergo node.
+
 ## Accessing the Node Panel
 
 To monitor the progress of the node, visit the **Ergo Node Panel** in a browser on the device:  
