@@ -34,6 +34,7 @@ To monitor the progress of the node, visit the **Ergo Node Panel** in a browser 
 
 - **127.0.0.1** refers to **localhost**, i.e., the device running the node.
 - If you want to monitor the node from another device, replace **127.0.0.1** with the **local IP** or **public IP (if port forwarding is set up)** of the device running the node.
+- The first sync can take some time. the node will sync headers, then download UTXO snapshot chunks (there is no progress bar for this), then finally start syncing remaining blocks. The node is ready to use when the blocks are 100% synced (green bar in web panel).
 
 ## Using the Node  
 
