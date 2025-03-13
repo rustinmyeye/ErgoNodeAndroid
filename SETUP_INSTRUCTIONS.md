@@ -52,3 +52,28 @@ You can interact with the node either through the **Node Panel web interface**, 
 
 ### **Caution**:  
 If you choose to initialize a wallet through the Node Panel, **write down the seed phrase** immediately! There is **no recovery** if you lose it. **Keep it safe** at all costs!  
+
+## Android Phantom Process Killer  
+
+Starting with Android 12, the operating system includes a **Phantom Process Killer** that aggressively terminates background processes that it deems unnecessary. This can impct the Ergo Node by stopping it when the app is running in the background.  
+
+### **How It Affects the Ergo Node**  
+- If you leave the app running and switch to another app, the Android system may terminate the node after some time.  
+- This disrupts synchronization and prevents the node from staying online for extended periods.  
+
+### **Workarounds**  
+To prevent the system from killing the node process, you can try the following:  
+
+1. **Disable Battery Optimization**  
+   - Go to **Settings** → **Apps** → **Ergo Node** → **Battery**  
+   - Select **Unrestricted** (or **Don't optimize** if available).  
+
+2. **Keep the App in the Foreground**  
+   - If possible, keep the Ergo Node app open while syncing.  
+
+3. **Use a Wake Lock**  
+   - if possible enable wake-lock for the Ergo node.
+
+These steps can help improve uptime, but due to Android’s memory management policies, some devices may still kill the process under heavy resource use.  
+
+
