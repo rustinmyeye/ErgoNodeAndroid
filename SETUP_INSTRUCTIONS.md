@@ -15,7 +15,7 @@ So far, this has been tested and works well on a **Samsung Galaxy S8+** and a **
 
 2. Locate the `.apk` file in your **Downloads** folder and tap on it to begin the installation. If prompted, you may need to **allow installation from unknown sources** in your device's "Settings" under **Security**.
 
-3. Open the app and tap on **“Start the Node”**. A pop-up will appear about **storage requirements**. Tap **OK** to proceed.
+3. Open the app and tap on **“Start the Node”**. A pop-up will appear about **storage requirements**. Tap **OK** to proceed. (the pop up says ~25 GB will be used, but the current install actually uses ~2.9 GB)
 
 4. The app will begin setting up the environment for the node installation.
 
