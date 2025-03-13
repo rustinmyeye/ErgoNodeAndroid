@@ -3,7 +3,7 @@
 #download things
 echo "Downloading stuff... please wait :)"
 #apk --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ add android-tools --quiet
-apk add openjdk11 python3 wget tmux curl --quiet
+apk add gcompat openjdk11 python3 wget tmux curl --quiet
 
 
 tmux kill-session -t node_session
@@ -38,12 +38,17 @@ set_environment(){
 }
 
 set_configuration(){
-        echo "ergo { 
-    networkType = "mainnet" 
-    node.stateType = "digest" 
-    node.blocksToKeep = 1440 
-    node.nipopow.nipopowBootstrap = true     
- }
+        echo "ergo {
+  node {
+        utxo {
+           utxoBootstrap = true
+        }
+        nipopow {
+           nipopowBootstrap = true
+           p2pNipopows = 2
+        }
+   }  
+}
   
  scorex { 
      restApi { 
