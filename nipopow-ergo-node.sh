@@ -9,13 +9,13 @@ apk add gcompat openjdk11 python3 wget tmux curl --quiet
 tmux kill-session -t node_session
 clear
 
-echo "- Retrieving latest node release."
+#echo "- Retrieving latest node release."
             #LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
             #LATEST_ERGO_RELEASE_NUMBERS=$(echo ${LATEST_ERGO_RELEASE} | cut -c 2-)
             #ERGO_DOWNLOAD_URL=https://github.com/ergoplatform/ergo/releases/download/${LATEST_ERGO_RELEASE}/ergo-${LATEST_ERGO_RELEASE_NUMBERS}.jar
             ERGO_DOWNLOAD_URL=https://github.com/ergoplatform/ergo/releases/download/v5.1.2/ergo-5.1.2.jar
             #echo "- Downloading Latest known Ergo release: ${LATEST_ERGO_RELEASE}."
-            echo "- Downloading Latest known Ergo release: 5.1.2 RocksDB."
+            echo "- Downloading Ergo release: 5.1.2 RocksDB."
             curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
 
 export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
