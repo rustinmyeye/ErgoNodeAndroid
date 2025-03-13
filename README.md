@@ -10,6 +10,8 @@ During setup, the script will check the total and available system memory to det
 - If the total RAM is **5GB or less**, it will check available memory:
   - If **more than 1.8GB is available**, it will still run the RocksDB **NiPoPoW Ergo Node**.
   - If **less than 1.8GB is available**, it will switch to the **Stateless Ergo Node**, which requires fewer resources.
+ 
+    
 
 ![alt text](https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/artwork/ic_launcher_round.png)
 
