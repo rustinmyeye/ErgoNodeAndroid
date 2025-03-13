@@ -4,7 +4,7 @@ Setup instructions [here](https://github.com/rustinmyeye/ErgoNodeAndroid/blob/ma
 
 A one-click Ergo node app for Android. This app is based on **NeoTerm**, and runs automated install scripts to set up and run an Ergo node on Android.
 
-The current version of this app sets up and bootstraps via NiPoPoW and a UTXO set snapshot NiPoPoW node.
+The current version of this app bootstraps via NiPoPoW and a UTXO set snapshot to run the Ergo node.
 
 ![alt text](https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/artwork/ic_launcher_round.png)
 
