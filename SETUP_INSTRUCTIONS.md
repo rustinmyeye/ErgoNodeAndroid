@@ -7,7 +7,7 @@ This app is intended to run on **aarch64**-based Android devices with the follow
 - **At least 4 GB of free internal storage**.
 - **At least 3 GB of total system RAM** (more recommended for better performance).
 
-So far, this has been tested and works well on a **Samsung Galaxy S8+** and a **Google Pixel 6a**.
+So far, this has been tested and works well on a **Google Pixel 6a**.
 
 ## First-Time Setup
 
