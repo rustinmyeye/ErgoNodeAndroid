@@ -7,6 +7,6 @@ chmod +x run-alpine.sh
 clear
 echo "
 apk add bash curl
-sh <(curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/stateless-ergo-node.sh)
+sh <(curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/nipopow-ergo-node.sh)
 " >> .alpinelinux_container/root/.profile
 ./run-alpine.sh
