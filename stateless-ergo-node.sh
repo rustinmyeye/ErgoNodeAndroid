@@ -12,7 +12,7 @@ clear
 echo "- Retrieving latest node release."
             LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
             LATEST_ERGO_RELEASE_NUMBERS=$(echo ${LATEST_ERGO_RELEASE} | cut -c 2-)
-            ERGO_DOWNLOAD_URL=https://github.com/ergoplatform/ergo/releases/download/${LATEST_ERGO_RELEASE}/ergo-${LATEST_ERGO_RELEASE_NUMBERS}.jar
+            ERGO_DOWNLOAD_URL=https://github.com/ergoplatform/ergo/releases/download/v5.1.2/ergo-5.1.2.jar
             echo "- Downloading Latest known Ergo release: ${LATEST_ERGO_RELEASE}."
             curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
 
