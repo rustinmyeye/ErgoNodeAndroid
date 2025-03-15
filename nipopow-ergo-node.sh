@@ -9,6 +9,36 @@ apk add gcompat openjdk11 python3 wget tmux curl --quiet
 tmux kill-session -t node_session
 clear
 
+#Maybe will use this beleow to grab the latest rocksdb release, but not sure if it is good enough yet. Need a new rocksdb release to test i guess.
+# echo "- Retrieving latest Ergo release that explicitly mentions RocksDB."
+
+# # Fetch all releases and find the latest one mentioning "RockDB" in the body
+# LATEST_ROCKSDB_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases" | \
+#     jq -r '[.[] | select(.body | test("(?i)rockdb|rocksdb"))][0]')
+
+# # Extract the version tag
+# LATEST_TAG=$(echo "$LATEST_ROCKSDB_RELEASE" | jq -r '.tag_name')
+
+# if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" = "null" ]; then
+#     echo "No RocksDB-specific release found."
+#     exit 1
+# fi
+
+# echo "- Latest Ergo RocksDB release: $LATEST_TAG"
+
+# # Extract the correct JAR file URL
+# ROCKSDB_JAR_URL=$(echo "$LATEST_ROCKSDB_RELEASE" | jq -r '.assets[] | select(.name | test("\\.jar$")) | .browser_download_url' | head -n 1)
+
+# if [ -z "$ROCKSDB_JAR_URL" ] || [ "$ROCKSDB_JAR_URL" = "null" ]; then
+#     echo "No JAR file found for $LATEST_TAG."
+#     exit 1
+# fi
+
+# echo "- Downloading: $ROCKSDB_JAR_URL"
+# curl --silent -L "$ROCKSDB_JAR_URL" --output rocksdb-ergo.jar
+# echo "- Download complete: rocksdb-ergo.jar"
+
+
 #echo "- Retrieving latest node release."
             #LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
             #LATEST_ERGO_RELEASE_NUMBERS=$(echo ${LATEST_ERGO_RELEASE} | cut -c 2-)
