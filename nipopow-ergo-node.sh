@@ -71,24 +71,24 @@ set_environment(){
 
 set_configuration(){
         echo "ergo {
-  node {
-        utxo {
-           utxoBootstrap = true
-        }
-        nipopow {
-           nipopowBootstrap = true
-           p2pNipopows = 2
-        }
-   }  
+  node {
+    utxo {
+      utxoBootstrap = true
+    }
+    nipopow {
+      nipopowBootstrap = true
+      p2pNipopows = 2
+    }
+  }
 }
-  
- scorex { 
-    network {
+
+scorex {
+  network {
     maxConnections = 1000
     magicBytes = [1, 0, 2, 4]
     bindAddress = "0.0.0.0:9030"
-    upnpEnabled = yes
-    nodeName = " ErgoNodeAndroid - NiPoPoW"
+    upnpEnabled = true
+    nodeName = "ErgoNodeAndroid-NiPoPoW"
     knownPeers = [
       "ergonode.duckdns.org:9030",
       "213.239.193.208:9030",
@@ -104,11 +104,13 @@ set_configuration(){
       "176.9.65.58:9130",
       "213.152.106.56:9030"
     ]
-  } 
-    restApi { 
-         apiKeyHash = "$BLAKE_HASH" 
-     } 
- }" > ergo.conf
+  }
+
+  restApi {
+    apiKeyHash = "$BLAKE_HASH"
+  }
+}
+" > ergo.conf
 
 }
 
