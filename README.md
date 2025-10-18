@@ -27,7 +27,7 @@ Also - [alpine-proot](https://github.com/Yonle/alpine-proot), [Alpine Linux](htt
 
 ## **Notes**
 
-I figured out how to bootstrap via **Nipopow** and **UTXO set snapshot** on mobile. So far it is only working for me with **RocksDB node 5.1.2**.  
+I figured out how to bootstrap via **Nipopow** and **UTXO set snapshot** on **Android**. So far it is only working for me with **RocksDB node 5.1.2**.  
 
 Some important points:
 
