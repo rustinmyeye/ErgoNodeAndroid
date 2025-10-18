@@ -71,16 +71,26 @@ set_environment(){
 
 set_configuration(){
         echo 'ergo {
-  node {                                                            utxo {
-           utxoBootstrap = true                                     }
-        nipopow {                                                      nipopowBootstrap = true
-           p2pNipopows = 2
-        }
-   } 
+  node {
+    utxo {
+      utxoBootstrap = true
+    }
+    nipopow {
+      nipopowBootstrap = true
+      p2pNipopows = 2
+    }
+  }
 }
 
- scorex {
-     restApi {
+scorex {
+  network {
+    maxConnections = 1000
+    magicBytes = [1, 0, 2, 4]
+    bindAddress = "0.0.0.0:9030"
+    nodeName = "📱 ErgoNodeAndroid NiPoPoW 📱"
+  }
+
+  restApi {
     apiKeyHash = "$BLAKE_HASH"
   }
 }
