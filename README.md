@@ -8,6 +8,10 @@ Alternatively, if you'd like to run the setup scripts within **Termux** instead 
 ```
 curl -sSL https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-ergo-setup.sh | sh
 ```
+After initial install, to start the node run:
+```
+./run-alpine.sh
+```
 
 During setup, the script will check the total and available system memory to determine which type of node to run:
 
