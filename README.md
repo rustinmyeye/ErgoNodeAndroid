@@ -4,7 +4,7 @@ Setup instructions [here](https://github.com/rustinmyeye/ErgoNodeAndroid/blob/ma
 
 A one-click Ergo node app for Android. This app is based on **NeoTerm**, and runs automated install scripts to set up and run an Ergo node on Android.
 
-Alternatively, if you'd like to run the setup scripts within **Termux** imstead of tbis app, use:
+Alternatively, if you'd like to run the setup scripts within **Termux** instead of tbis app, use this one liner:
 ```
 curl -sSL https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-ergo-setup.sh | sh
 ```
