@@ -33,6 +33,7 @@ Some important points:
 
 - If you run a **Nipopow node**, there is **no way to see its progress in the panel**. It downloads chunks in the background, so just stick with it, or connect a keyboard Ior use an onscreen keyboard with Ctrl keys) and watch logs.  
 - One day I want to figure out how to **add a progress bar for Nipopow chunks** in the panel.  
+- It is important to enable wake lock for the app, disable power optimization, and phantom process killing to make this reliable.
 
 Compatibility notes:
 
