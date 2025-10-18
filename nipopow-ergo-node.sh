@@ -70,7 +70,7 @@ set_environment(){
 }
 
 set_configuration(){
-        echo "ergo {
+        echo 'ergo {
   node {
     utxo {
       utxoBootstrap = true
@@ -110,7 +110,7 @@ scorex {
     apiKeyHash = "$BLAKE_HASH"
   }
 }
-" > ergo.conf
+' > ergo.conf
 
 }
 
