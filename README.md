@@ -2,6 +2,11 @@
 
 Setup instructions [here](https://github.com/rustinmyeye/ErgoNodeAndroid/blob/master/SETUP_INSTRUCTIONS.md)
 
+or if you'd like to run the setup scripts within **Termux** use:
+```
+curl -sSL https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-ergo-setup.sh | sh
+```
+
 A one-click Ergo node app for Android. This app is based on **NeoTerm**, and runs automated install scripts to set up and run an Ergo node on Android.
 
 During setup, the script will check the total and available system memory to determine which type of node to run:
