@@ -24,3 +24,18 @@ This is a fork of [NeoTerm](https://github.com/NeoTerm/NeoTerm)
 I’m using a bunch of parts from Glasgow's Ergo Node setup scripts. [Mark Glasgow](https://github.com/glasgowm148/ergoscripts)
 
 Also - [alpine-proot](https://github.com/Yonle/alpine-proot), [Alpine Linux](https://www.alpinelinux.org/), [Ergo Protocol reference client](https://github.com/ergoplatform/ergo/releases)
+
+## **Notes**
+
+I figured out how to bootstrap via **Nipopow** and **UTXO set snapshot** on mobile. So far it is only working for me with **RocksDB node 5.1.2**.  
+
+Some important points:
+
+- If you run a **Nipopow node**, there is **no way to see its progress in the panel**. It downloads chunks in the background, so just stick with it, or connect a keyboard Ior use an onscreen keyboard with Ctrl keys) and watch logs.  
+- One day I want to figure out how to **add a progress bar for Nipopow chunks** in the panel.  
+
+Compatibility notes:
+
+- **LevelDB versions** are not working with **aarch64**, even if I try the official aarch64 release.  
+- **Termux** does not have glibc (it uses musl libc like Alpine Linux), so **RocksDB does not work out of the box**. The workaround is to set up an **Arch Linux proot** to run it.
+
