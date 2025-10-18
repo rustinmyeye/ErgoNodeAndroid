@@ -37,6 +37,6 @@ Some important points:
 
 Compatibility notes:
 
-- **LevelDB versions** are not working with **aarch64**, even if I try the official aarch64 release.  
+- **LevelDB versions** are not working with **aarch64**, when using NiPoPow config even if I try the official aarch64 release.  
 - **Termux** and **Neoterm** do not have glibc (it uses musl libc like Alpine Linux), so **RocksDB does not work out of the box**. The workaround is to enable glibc compatibility by installing gcompat in an **Alpine Linux proot** or set up an **Arch Linux proot** to run it.
 
