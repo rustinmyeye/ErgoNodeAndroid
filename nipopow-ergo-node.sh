@@ -83,7 +83,29 @@ set_configuration(){
 }
   
  scorex { 
-     restApi { 
+    network {
+    maxConnections = 1000
+    magicBytes = [1, 0, 2, 4]
+    bindAddress = "0.0.0.0:9030"
+    upnpEnabled = yes
+    nodeName = " ErgoNodeAndroid - NiPoPoW"
+    knownPeers = [
+      "ergonode.duckdns.org:9030",
+      "213.239.193.208:9030",
+      "159.65.11.55:9030",
+      "165.227.26.175:9030",
+      "159.89.116.15:9030",
+      "136.244.110.145:9030",
+      "94.130.108.35:9030",
+      "51.75.147.1:9020",
+      "221.165.214.185:9030",
+      "217.182.197.196:9030",
+      "173.212.220.9:9030",
+      "176.9.65.58:9130",
+      "213.152.106.56:9030"
+    ]
+  } 
+    restApi { 
          apiKeyHash = "$BLAKE_HASH" 
      } 
  }" > ergo.conf
