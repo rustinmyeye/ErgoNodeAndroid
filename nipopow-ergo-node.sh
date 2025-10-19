@@ -330,7 +330,7 @@ Sync Progress;"\
        # else
           #  echo "You are not connected to the internet!"
             print_console
-    fi
+    done
 
         dt=$(date '+%d/%m/%Y %H:%M:%S');
         echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT:$HEIGHT" >> height.log
