@@ -37,19 +37,26 @@ set_environment(){
 }
 
 set_configuration(){
-        echo "ergo { 
+        echo 'ergo { 
     networkType = "mainnet" 
     node.stateType = "digest" 
     node.blocksToKeep = 1440 
     node.nipopow.nipopowBootstrap = true     
  } 
   
- scorex { 
-     restApi { 
-         apiKeyHash = "$BLAKE_HASH" 
-     } 
- }" > ergo.conf
+ scorex {
+  network {
+    maxConnections = 1000
+    magicBytes = [1, 0, 2, 4]
+    bindAddress = "0.0.0.0:9030"
+    nodeName = "📱 ErgoNodeAndroid Stateless 📱"
+  }
 
+  restApi {
+    apiKeyHash = "$BLAKE_HASH"
+  }
+}
+' > ergo.conf 
 }
 
 main_thing(){
