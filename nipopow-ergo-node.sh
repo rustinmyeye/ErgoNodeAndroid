@@ -180,9 +180,16 @@ Sync Progress;" \
 
         PEERS=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
         echo "Number of connected peers: $PEERS"
+        echo "  "
 
-        echo -n "
-NiPoPoW Bootstrap progress: "; grep 'Downloaded or waiting' ergo.log | tail -n 1 | sed 's/.*o.e.n.h.ErgoHistory\$\$anon\$1 - //'
+        grep 'Downloaded or waiting' ergo.log | tail -n 1 | awk '{
+    match($0, /([0-9]+).*([0-9]+)/, a);
+    if(a[1]==a[2]) {
+        print "NiPoPoW Bootstart complete";
+    } else {
+        print "NiPoPoW Bootstrap progress: "$0;
+    }
+}'
 
         dt=$(date '+%d/%m/%Y %H:%M:%S')
         echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT: $HEIGHT" >> height.log
