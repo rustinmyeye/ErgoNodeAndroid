@@ -2,7 +2,7 @@
 
 clear
 echo "Downloading stuff... please wait :)"
-apk add gcompat ncurses openjdk11 python3 wget tmux curl --quiet
+apk add gcompat openjdk11 python3 wget tmux curl --quiet
 
 tmux kill-session -t node_session 2>/dev/null
 clear
@@ -165,20 +165,21 @@ get_heights(){
     fi
 }
 
-print_console() {
-    tput civis  # hide cursor
+print_console(){
     while sleep 1
     do
-        tput cup 0 0  # move cursor to top-left
-
-        printf "%s\n\n" \
+        clear
+        printf "%s    \n\n" \
         "View the Ergo node panel at 127.0.0.1:9053/panel" \
-        "Your unique API key is: $API_KEY" \
-        "Sync Progress:" \
+        "
+Your unique API key is: $API_KEY" \
+        "
+Sync Progress;" \
         "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ###" \
-        "### Blocks:   ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ###"
+        "### Blocks:  ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ###"
+        
+        echo " "
 
-        # NiPoPoW bootstrap progress right below blocks
         grep 'Downloaded or waiting' ergo.log | tail -n 1 | awk '{
             match($0, /([0-9]+).*([0-9]+)/, a);
             if(a[1]==a[2]) {
@@ -188,24 +189,15 @@ print_console() {
             }
         }'
 
-        # Peers count comes after bootstrap
-        PEERS=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
-        echo ""
-        echo "Number of connected peers: $PEERS"
-        echo ""
+        echo " "
 
-        # Log heights
+        PEERS=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
+        echo "Number of connected peers: $PEERS"
+
         dt=$(date '+%d/%m/%Y %H:%M:%S')
         echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT: $HEIGHT" >> height.log
-
-        # Update heights
         get_heights
-
-        # Fill remaining lines to prevent flicker
-        printf "\n%.0s" {1..5}
-
     done
-    tput cnorm  # restore cursor
 }
 
 set_environment
