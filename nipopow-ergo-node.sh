@@ -186,7 +186,7 @@ if [ -n "$line" ]; then
   echo "NiPoPoW Bootstrap Progress;"
   echo ""
   echo "$line" | awk -F'- ' '{print $2}' | \
-  sed -E 's/Downloaded or waiting ([0-9]+) chunks out of ([0-9]+).*/### Chunks Downloaded (\1\/\2) ###/'
+  sed -E 's/Downloaded or waiting ([0-9]+) chunks out of ([0-9]+).*/### Chunks Downloaded: (\1\/\2) ###/'
 fi
 
         echo " "
