@@ -1,5 +1,6 @@
 #!/bin/sh
 
+clear
 #download things
 echo "Downloading stuff... please wait :)"
 #apk --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ add android-tools --quiet
@@ -322,12 +323,12 @@ Sync Progress;"\
 
         echo ""
 
-        wget -q --spider http://google.com
+      #  wget -q --spider http://google.com
 
-        if [ $? -eq 0 ]; then
-            echo ""
-        else
-            echo "You are not connected to the internet!"
+      #  if [ $? -eq 0 ]; then
+        #    echo ""
+       # else
+          #  echo "You are not connected to the internet!"
             print_console
     fi
 
