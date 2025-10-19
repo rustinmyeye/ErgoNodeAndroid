@@ -79,7 +79,7 @@ start_node(){
     while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1; done
 
     echo "- Node has started. Searching for peers..."
-    end_time=$(($(date +%s) + 120))
+    end_time=$(($(date +%s) + 30))
 
     while [ $(date +%s) -lt $end_time ]; do
         PEERS=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount'));")
@@ -103,9 +103,9 @@ Generating unique API key..."
 
     tmux new-session -d -s new_session 'java -jar -Xmx1G ergo.jar --mainnet -c ergo.conf'
     echo "- Node has started... Setting blake hash and finding peers"
-    sleep 20
+    sleep 10
 
-    end_time=$(($(date +%s) + 100))
+    end_time=$(($(date +%s) + 30))
     while [ $(date +%s) -lt $end_time ]; do
         PEERS=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount'));")
         echo -ne "- Number of connected peers: $PEERS"'\r'
@@ -142,18 +142,10 @@ check_status(){
 
 get_heights(){
     check_status "localhost:9053/info"
-
-    API_HEIGHT=$(curl --silent --max-time 10 "https://api.ergoplatform.com/api/v1/networkState" -H "accept: application/json" | \
-        python3 -c "import sys, json; print(json.load(sys.stdin)['height']);")
-    HEADERS_HEIGHT=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | \
-        python3 -c "import sys, json; print(json.load(sys.stdin)['headersHeight']);")
-    HEIGHT=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | \
-        python3 -c "import sys, json; print(json.load(sys.stdin)['parameters']['height']);")
-    FULL_HEIGHT=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | \
-        python3 -c "import sys, json; print(json.load(sys.stdin)['fullHeight']);")
-
-    PEERS=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | \
-        python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
+    API_HEIGHT=$(curl --silent --max-time 10 "https://api.ergoplatform.com/api/v1/networkState" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['height']);")
+    HEADERS_HEIGHT=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['headersHeight']);")
+    HEIGHT=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['parameters']['height']);")
+    FULL_HEIGHT=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['fullHeight']);")
 
     API_HEIGHT=${API_HEIGHT:-0}
 
@@ -171,16 +163,6 @@ get_heights(){
             PERCENT_BLOCKS=$(( ( ($API_HEIGHT - $HEIGHT) * 100) / $API_HEIGHT ))
         fi
     fi
-
-    # NiPoPoW progress
-    NIPOPOW_PROGRESS=$(grep 'Downloaded or waiting' ergo.log | tail -n 1 | awk '{
-        match($0, /([0-9]+).*([0-9]+)/, a);
-        if(a[1]==a[2]) {
-            print "NiPoPoW Bootstart complete";
-        } else {
-            print "NiPoPoW Bootstrap progress: "$0;
-        }
-    }')
 }
 
 print_console(){
@@ -194,19 +176,29 @@ Your unique API key is: $API_KEY" \
         "
 Sync Progress;" \
         "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ###" \
-        "### Blocks:  ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ###" \
-        "$NIPOPOW_PROGRESS" \
-        "Number of connected peers: $PEERS"
+        "### Blocks:  ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ###"
+        
+        echo " "
+
+        grep 'Downloaded or waiting' ergo.log | tail -n 1 | awk '{
+            match($0, /([0-9]+).*([0-9]+)/, a);
+            if(a[1]==a[2]) {
+                print "NiPoPoW Bootstart complete";
+            } else {
+                print "NiPoPoW Bootstrap progress: "$0;
+            }
+        }'
 
         echo " "
 
-        dt=$(date '+%d/%m/%Y %H:%M:%S')
-        echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT: $HEIGHT, PEERS: $PEERS" >> height.log
+        PEERS=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
+        echo "Number of connected peers: $PEERS"
 
+        dt=$(date '+%d/%m/%Y %H:%M:%S')
+        echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT: $HEIGHT" >> height.log
         get_heights
     done
 }
-
 
 set_environment
 set_configuration
