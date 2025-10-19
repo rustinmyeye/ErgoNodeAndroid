@@ -181,6 +181,8 @@ Sync Progress;" \
         PEERS=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
         echo "Number of connected peers: $PEERS"
 
+grep 'Downloaded or waiting' ergo.log | tail -n
+ 1
         dt=$(date '+%d/%m/%Y %H:%M:%S')
         echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT: $HEIGHT" >> height.log
         get_heights
