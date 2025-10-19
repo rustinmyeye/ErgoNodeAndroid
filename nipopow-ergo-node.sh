@@ -180,15 +180,8 @@ Sync Progress;" \
         
         echo " "
 
-        grep 'Downloaded or waiting' ergo.log | tail -n 1 | awk '{
-    match($0, /([0-9]+).*([0-9]+)/, a);
-    if(a[1]==a[2]) {
-        print "NiPoPoW Bootstrap complete";
-    } else {
-        pct = a[1] / a[2] * 100;
-        printf "NiPoPoW Bootstrap progress: %.2f%%\n", pct;
-    }
-}'
+        grep 'Downloaded or waiting' ergo.log | tail -n 1 | awk -F'- ' '{print "NiPoPoW Bootstrap Progress: " $2}'
+
 
         echo " "
 
