@@ -51,10 +51,10 @@ echo "Please choose which node type to install:"
 echo "1) NiPoPoW Ergo Node (recommended for >=5GB RAM)"
 echo "2) Stateless Ergo Node (lightweight option)"
 echo
-echo "⏳ Auto-selecting '$AUTO_NODE_TYPE' in 10 seconds..."
+echo "⏳ Auto-selecting '$AUTO_NODE_TYPE' in 30 seconds..."
 echo
 
-read -t 20 -p "Enter choice (1 or 2): " NODE_CHOICE
+read -t 30 -p "Enter choice (1 or 2): " NODE_CHOICE
 echo
 
 if [ "$NODE_CHOICE" == "1" ]; then
