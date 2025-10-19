@@ -165,26 +165,55 @@ get_heights(){
     fi
 }
 
-print_console(){
-    while sleep 1
-    do
-        clear
-        printf "%s    \n\n" \
-        "View the Ergo node panel at 127.0.0.1:9053/panel" \
-        "
-Your unique API key is: $API_KEY" \
-        "
-Sync Progress;" \
-        "### Headers: ~$(( 100 - $PERCENT_HEADERS ))% Complete ($HEADERS_HEIGHT/$API_HEIGHT) ###" \
-        "### Blocks:  ~$(( 100 - $PERCENT_BLOCKS ))% Complete ($HEIGHT/$API_HEIGHT) ###"
+LOG_FILE="ergo.log"
+[ ! -f "$LOG_FILE" ] && touch "$LOG_FILE"
 
-        PEERS=$(curl --silent --max-time 10 "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin)['peersCount']);")
-        echo "Number of connected peers: $PEERS"
+print_console() {
+    clear
+    echo "-------------------------------------------------------------"
+    echo "Ergo Node Console Status"
+    echo "Updated: $(date '+%Y-%m-%d %H:%M:%S')"
+    echo "-------------------------------------------------------------"
 
-        dt=$(date '+%d/%m/%Y %H:%M:%S')
-        echo "$dt: HEADERS: $HEADERS_HEIGHT, HEIGHT: $HEIGHT" >> height.log
-        get_heights
-    done
+    # --- Headers Height ---
+    HEADERS_LINE=$(grep -F "best header" "$LOG_FILE" | tail -n 1)
+    if [ -n "$HEADERS_LINE" ]; then
+        HEADERS_HEIGHT=$(echo "$HEADERS_LINE" | grep -oE 'height = [0-9]+' | awk '{print $3}')
+        echo "Headers height: ${HEADERS_HEIGHT:-N/A}"
+    else
+        echo "Headers height: N/A"
+    fi
+
+    # --- Block Height ---
+    BLOCKS_LINE=$(grep -F "Full block applied" "$LOG_FILE" | tail -n 1)
+    if [ -n "$BLOCKS_LINE" ]; then
+        BLOCKS_HEIGHT=$(echo "$BLOCKS_LINE" | grep -oE 'height = [0-9]+' | awk '{print $3}')
+        echo "Block height: ${BLOCKS_HEIGHT:-N/A}"
+    else
+        echo "Block height: N/A"
+    fi
+
+    # --- NiPoPoW Chunks Progress ---
+    CHUNKS_LINE=$(grep -F "Downloaded or waiting" "$LOG_FILE" | tail -n 1)
+    if [ -n "$CHUNKS_LINE" ]; then
+        DOWNLOADED=$(echo "$CHUNKS_LINE" | awk '{for(i=1;i<=NF;i++) if ($i=="Downloaded") print $(i+3)}')
+        TOTAL=$(echo "$CHUNKS_LINE" | awk '{for(i=1;i<=NF;i++) if ($i=="out") print $(i+2)}')
+        if [ -n "$DOWNLOADED" ] && [ -n "$TOTAL" ]; then
+            PERCENT=$(awk -v d="$DOWNLOADED" -v t="$TOTAL" 'BEGIN { if(t>0) printf "%.2f", (d/t)*100; else print "0" }')
+            if [ "$DOWNLOADED" = "$TOTAL" ]; then
+    echo "NiPoPoW Chunks: 100% (All chunks downloaded)"
+else
+    echo "NiPoPoW Chunks: ${PERCENT}% (${DOWNLOADED} / ${TOTAL})"
+fi
+
+        else
+            echo "NiPoPoW Chunks: 0% (no progress yet)"
+        fi
+    else
+        echo "NiPoPoW Chunks: 0% (no progress yet)"
+    fi
+
+    echo "-------------------------------------------------------------"
 }
 
 set_environment
