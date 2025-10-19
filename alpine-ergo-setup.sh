@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 # If run-alpine.sh exists, run it and exit
 if [ -f "./run-alpine.sh" ]; then
     ./run-alpine.sh
@@ -7,6 +9,8 @@ if [ -f "./run-alpine.sh" ]; then
 fi
 
 echo "Checking system memory to determine node type..."
+
+sleep 2
 
 # Check total and available system memory in MB
 TOTAL_MEM=$(free -m | awk '/^Mem:/{print $2}')
@@ -34,7 +38,7 @@ echo "Total Memory: ${TOTAL_MEM}MB"
 echo "Available Memory: ${AVAILABLE_MEM}MB"
 echo "Selected Node Type: $NODE_TYPE"
 echo "----------------------------------------"
-sleep 3  # Pause for 3 seconds so the user can see the info
+sleep 5
 
 # Download and set up Alpine scripts
 curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/refs/heads/master/init-alpine.sh -o init-alpine.sh
