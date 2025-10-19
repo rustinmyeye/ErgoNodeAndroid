@@ -180,8 +180,9 @@ Sync Progress;" \
         
         echo " "
 
-        grep 'Downloaded or waiting' ergo.log | tail -n 1 | awk -F'- ' '{print "NiPoPoW Bootstrap Progress: " $2}'
-
+        grep 'Downloaded or waiting' ergo.log | tail -n 1 | awk -F'- ' '{print $2}' | \
+sed -E 's/Downloaded or waiting ([0-9]+) chunks out of ([0-9]+).*/### Chunks Downloaded \1\/\2 ###/' | \
+awk 'BEGIN{print "NiPoPoW Bootstrap Progress:\n"}{print}'
 
         echo " "
 
