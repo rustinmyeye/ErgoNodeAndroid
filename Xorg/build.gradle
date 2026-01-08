@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+  namespace "io.neoterm.xorg"
   compileSdkVersion rootProject.ext.android.COMPILE_SDK_VERSION
 
   defaultConfig {
@@ -22,15 +23,16 @@ android {
       jniLibs.srcDirs = ['src/main/jniLibs']
     }
   }
+  lintOptions {
+    disable 'MissingPermission', 'MissingSuperCall', 'UnsafeDynamicallyLoadedCode'
+  }
 }
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-  implementation rootProject.ext.deps["appcompat-v7"]
+  implementation 'androidx.appcompat:appcompat:1.7.1'
   testImplementation rootProject.ext.deps["junit"]
 
-  androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
-    exclude group: 'com.android.support', module: 'support-annotations'
-  })
+  androidTestImplementation('androidx.test.espresso:espresso-core:3.7.0')
 }

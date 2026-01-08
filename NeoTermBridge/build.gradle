@@ -4,6 +4,7 @@ def libraryVersionCode = 1
 def libraryVersionName = "1.0"
 
 android {
+  namespace "io.neoterm.bridge"
   compileSdkVersion rootProject.ext.android.COMPILE_SDK_VERSION
 
   defaultConfig {
@@ -23,9 +24,7 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation 'androidx.appcompat:appcompat:1.2.0'
-  androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
-    exclude group: 'com.android.support', module: 'support-annotations'
-  })
+  implementation 'androidx.appcompat:appcompat:1.7.1'
+  androidTestImplementation('androidx.test.espresso:espresso-core:3.7.0')
   testImplementation rootProject.ext.deps["junit"]
 }
