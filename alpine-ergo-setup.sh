@@ -78,12 +78,6 @@ echo "----------------------------------------"
 sleep 3
 
 # Download and set up Alpine scripts
-
-export PROOT_NO_SECCOMP=1
-unset LD_PRELOAD
-
-
-
 echo "⬇️  Downloading Alpine initialization scripts..."
 curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/refs/heads/master/init-alpine.sh -o init-alpine.sh
 chmod +x init-alpine.sh
@@ -92,15 +86,13 @@ chmod +x run-alpine.sh
 
 # Initialize Alpine
 ./init-alpine.sh
+clear
 
-# ensure path exists
-mkdir -p .alpinelinux_container/root
-
-cat <<EOF >> .alpinelinux_container/root/.profile
+# Append the selected node setup command to .profile
+echo "
 apk add bash curl
 sh <(curl -s $NODE_SCRIPT)
-EOF
-
+" >> .alpinelinux_container/root/.profile
 
 # Run Alpine environment
 ./run-alpine.sh
