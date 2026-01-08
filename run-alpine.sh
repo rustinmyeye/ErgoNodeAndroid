@@ -270,7 +270,7 @@ __start() {
 	for f in stat version loadavg vmstat uptime; do
 		[ -f "$CONTAINER_PATH/proc/.$f" ] && COMMANDS+=" -b $CONTAINER_PATH/proc/.$f:/proc/$f"
 	done
-	COMMANDS+=" -r $CONTAINER_PATH -0 -w /root"
+	COMMANDS+=" -r $CONTAINER_PATH -0 -w $HOME"
 	COMMANDS+=" -b $CONTAINER_PATH/root:/dev/shm"
 
 	# Detect whenever Pulseaudio is installed with POSIX support
@@ -292,10 +292,10 @@ __start() {
 	[ -n "$ALPINEPROOT_BIND_TMPDIR" ] && COMMANDS+=" -b $TMPDIR:/tmp"
 
 	if [ "$#" = 0 ]; then
-		eval "exec $COMMANDS /bin/su -l"
-	else
-		eval "exec $COMMANDS /bin/su -l -c \"$@\""
-	fi
+    eval "exec $COMMANDS /bin/sh"
+else
+    eval "exec $COMMANDS /bin/sh -c \"$@\""
+fi
 }
 
 alpineproot $@
