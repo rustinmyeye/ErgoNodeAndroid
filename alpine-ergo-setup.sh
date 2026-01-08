@@ -78,6 +78,9 @@ echo "----------------------------------------"
 sleep 3
 
 # Download and set up Alpine scripts
+
+export PROOT_NO_SECCOMP=1
+
 echo "⬇️  Downloading Alpine initialization scripts..."
 curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/refs/heads/master/init-alpine.sh -o init-alpine.sh
 chmod +x init-alpine.sh
