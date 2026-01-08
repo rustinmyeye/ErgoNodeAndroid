@@ -80,8 +80,8 @@ sleep 3
 # Download and set up Alpine scripts
 
 export PROOT_NO_SECCOMP=1
-export HOME=/root
-export LD_PRELOAD=
+unset LD_PRELOAD
+
 
 
 echo "⬇️  Downloading Alpine initialization scripts..."
@@ -92,13 +92,15 @@ chmod +x run-alpine.sh
 
 # Initialize Alpine
 ./init-alpine.sh
-clear
 
-# Append the selected node setup command to .profile
-echo "
+# ensure path exists
+mkdir -p .alpinelinux_container/root
+
+cat <<EOF >> .alpinelinux_container/root/.profile
 apk add bash curl
 sh <(curl -s $NODE_SCRIPT)
-" >> .alpinelinux_container/root/.profile
+EOF
+
 
 # Run Alpine environment
 ./run-alpine.sh
