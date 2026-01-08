@@ -80,6 +80,9 @@ sleep 3
 # Download and set up Alpine scripts
 
 export PROOT_NO_SECCOMP=1
+export HOME=/root
+export LD_PRELOAD=
+
 
 echo "⬇️  Downloading Alpine initialization scripts..."
 curl -s https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/refs/heads/master/init-alpine.sh -o init-alpine.sh
