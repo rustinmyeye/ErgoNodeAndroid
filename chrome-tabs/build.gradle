@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+  namespace "de.mrapp.android.tabswitcher"
   compileSdkVersion rootProject.ext.android.COMPILE_SDK_VERSION
 
   defaultConfig {
@@ -21,6 +22,5 @@ dependencies {
   implementation rootProject.ext.deps["annotations"]
   testImplementation rootProject.ext.deps["junit"]
 
-  implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'androidx.appcompat:appcompat-resources:1.2.0'
+  implementation 'androidx.appcompat:appcompat:1.6.1'
 }

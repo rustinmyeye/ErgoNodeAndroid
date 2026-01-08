@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+  namespace "io.neoterm"
   compileSdkVersion rootProject.ext.android.COMPILE_SDK_VERSION
 
   defaultConfig {
@@ -52,20 +53,15 @@ android {
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
   testImplementation rootProject.ext.deps["junit"]
-  androidTestImplementation project(path: ':NeoLang')
 
   implementation rootProject.ext.deps["kotlin-stdlib"]
 
-  implementation 'org.greenrobot:eventbus:3.0.0'
-  implementation 'com.github.wrdlbrnft:modular-adapter:0.2.0.6'
-  implementation 'com.github.wrdlbrnft:sorted-list-adapter:0.2.0.19'
-  implementation 'com.simplecityapps:recyclerview-fastscroll:1.0.16'
-  implementation 'de.psdev.licensesdialog:licensesdialog:1.8.3'
-  implementation 'com.github.GrenderG:Color-O-Matic:1.1.5'
+  implementation 'org.greenrobot:eventbus:3.3.1'
+  implementation 'com.simplecityapps:recyclerview-fastscroll:2.0.1'
+  implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'
   implementation 'androidx.annotation:annotation:1.2.0'
   implementation 'androidx.cardview:cardview:1.0.0'
-  implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'androidx.appcompat:appcompat-resources:1.2.0'
+  implementation 'androidx.appcompat:appcompat:1.7.1'
 
   implementation project(':chrome-tabs')
   implementation project(':NeoLang')

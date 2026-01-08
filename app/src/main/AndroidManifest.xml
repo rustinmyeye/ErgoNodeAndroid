@@ -33,6 +33,7 @@
     <activity
       android:name=".ui.term.NeoTermActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
+      android:exported="true"
       android:launchMode="singleTask"
       android:theme="@style/AppTheme.NoActionBar.Dark"
       android:windowSoftInputMode="adjustResize|stateHidden">
@@ -137,7 +138,7 @@
     <activity
       android:name=".ui.other.SetupActivity"
       android:configChanges="keyboardHidden|orientation|screenSize"
-      android:exported="true"
+      android:exported="false"
       android:theme="@style/AppTheme.NoActionBar"/>
     <activity
       android:name=".ui.other.BonusActivity"
@@ -174,7 +175,8 @@
 
     <service
       android:name=".services.NeoTermService"
-      android:enabled="true"/>
+      android:enabled="true"
+      android:exported="false"/>
 
     <meta-data
       android:name="com.sec.android.support.multiwindow"

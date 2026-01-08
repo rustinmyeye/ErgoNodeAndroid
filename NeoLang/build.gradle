@@ -1,22 +1,15 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
-dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
-  compile rootProject.ext.deps["kotlin-stdlib"]
-}
-
-buildscript {
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath rootProject.ext.deps["kotlin-gradle-plugin"]
-  }
-}
 repositories {
   mavenCentral()
 }
+
+java {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
 compileKotlin {
   kotlinOptions {
     jvmTarget = "1.8"
@@ -27,6 +20,9 @@ compileTestKotlin {
     jvmTarget = "1.8"
   }
 }
+
 dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation rootProject.ext.deps["kotlin-stdlib"]
   testImplementation rootProject.ext.deps["junit"]
 }
