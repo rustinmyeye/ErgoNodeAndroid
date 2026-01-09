@@ -2,34 +2,29 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-  namespace "io.neoterm"
-  compileSdkVersion rootProject.ext.android.COMPILE_SDK_VERSION
+  compileSdk rootProject.ext.android.COMPILE_SDK_VERSION
+  ndkVersion "21.4.7075529"
 
   defaultConfig {
     applicationId "io.neoterm"
-    minSdkVersion rootProject.ext.android.MIN_SDK_VERSION
-    targetSdkVersion rootProject.ext.android.TARGET_SDK_VERSION
+    minSdk rootProject.ext.android.MIN_SDK_VERSION
+    targetSdk rootProject.ext.android.TARGET_SDK_VERSION
     versionCode 38
     versionName "2.0.5"
     testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-    resConfigs "zh-rCN", "zh-rTW"
+    resourceConfigurations += ['zh-rCN', 'zh-rTW']
     externalNativeBuild {
       cmake {
         cppFlags "-std=c++11"
-        abiFilters 'arm64-v8a'
-      }
-    }
-    sourceSets {
-      main {
-        jniLibs.srcDirs = ['src/main/jniLibs']
+        abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
       }
     }
   }
   buildTypes {
     release {
       minifyEnabled true
-      zipAlignEnabled true
       shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
   externalNativeBuild {
@@ -37,31 +32,45 @@ android {
       path "CMakeLists.txt"
     }
   }
-  lintOptions {
+  compileOptions {
+    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_1_8
+  }
+  kotlinOptions {
+    jvmTarget = "1.8"
+    freeCompilerArgs = ["-Xallow-result-return-type"]
+  }
+  namespace 'io.neoterm'
+  lint {
     abortOnError false
     checkReleaseBuilds false
   }
-  compileOptions {
-    targetCompatibility 1.8
-    sourceCompatibility 1.8
-  }
-  kotlinOptions {
-    freeCompilerArgs = ["-Xallow-result-return-type"]
+  packagingOptions {
+    jniLibs {
+      useLegacyPackaging true
+    }
   }
 }
 
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
   testImplementation rootProject.ext.deps["junit"]
+  androidTestImplementation project(path: ':NeoLang')
 
   implementation rootProject.ext.deps["kotlin-stdlib"]
 
   implementation 'org.greenrobot:eventbus:3.3.1'
+  
+  implementation 'androidx.recyclerview:recyclerview:1.3.2'
+  implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
+  
   implementation 'com.simplecityapps:recyclerview-fastscroll:2.0.1'
   implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'
-  implementation 'androidx.annotation:annotation:1.2.0'
+  implementation 'com.github.GrenderG:Color-O-Matic:1.1.5'
+  implementation 'androidx.annotation:annotation:1.7.1'
   implementation 'androidx.cardview:cardview:1.0.0'
-  implementation 'androidx.appcompat:appcompat:1.7.1'
+  implementation 'androidx.appcompat:appcompat:1.6.1'
+  implementation 'androidx.appcompat:appcompat-resources:1.6.1'
 
   implementation project(':chrome-tabs')
   implementation project(':NeoLang')

@@ -33,7 +33,7 @@
   <string name="setup_error_parameter_null">Setup parameter is null</string>
   <string name="setup_preparing">Preparing…</string>
   <string name="setup_confirm">Welcome to Ergo Node for Android!</string>
-  <string name="setup_confirm_text">Ergo Node requires ~25GB of free storage... Continue?</string>
+  <string name="setup_confirm_text">Ergo NiPoPoW Node requires ~5GB of free storage... Continue?</string>
   <string name="setup_reset_confirm">Reset Confirm</string>
   <string name="setup_reset_confirm_text">This operation will clear all your data! Continue?</string>
 

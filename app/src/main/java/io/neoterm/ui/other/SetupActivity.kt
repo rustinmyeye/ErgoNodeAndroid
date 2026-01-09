@@ -228,8 +228,8 @@ class SetupActivity : AppCompatActivity(), View.OnClickListener, ResultListener 
     }
   }
 
-  private fun executeAptUpdate() = runApt("update", "-y") {
-    it.onSuccess { finish() }
+  private fun executeAptUpdate() = runApt("update") {
+    it.onSuccess { executeAptUpgrade() }
   }
 
   private fun executeAptUpgrade() = runApt("upgrade", "-y") {

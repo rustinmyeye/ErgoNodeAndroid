@@ -14,7 +14,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter
 import io.neoterm.R
 import io.neoterm.component.ComponentManager
 import io.neoterm.component.config.NeoPreference
@@ -27,13 +26,7 @@ import java.util.*
  * @author kiva
  */
 
-class PackageManagerActivity : AppCompatActivity(), SearchView.OnQueryTextListener, SortedListAdapter.Callback {
-  private val comparator = SortedListAdapter.ComparatorBuilder<PackageModel>()
-    .setOrderForModel<PackageModel>(PackageModel::class.java) { a, b ->
-      a.packageInfo.packageName!!.compareTo(b.packageInfo.packageName!!)
-    }
-    .build()
-
+class PackageManagerActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
   lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
   lateinit var adapter: PackageAdapter
   var models = listOf<PackageModel>()
@@ -47,7 +40,7 @@ class PackageManagerActivity : AppCompatActivity(), SearchView.OnQueryTextListen
 
     recyclerView = findViewById(R.id.pm_package_list)
     recyclerView.setHasFixedSize(true)
-    adapter = PackageAdapter(this, comparator, object : PackageAdapter.Listener {
+    adapter = PackageAdapter(this, object : PackageAdapter.Listener {
       override fun onModelClicked(model: PackageModel) {
         AlertDialog.Builder(this@PackageManagerActivity)
           .setTitle(model.packageInfo.packageName)
@@ -59,7 +52,6 @@ class PackageManagerActivity : AppCompatActivity(), SearchView.OnQueryTextListen
           .show()
       }
     })
-    adapter.addCallback(this)
 
     recyclerView.layoutManager = LinearLayoutManager(this)
     recyclerView.adapter = adapter
@@ -80,8 +72,8 @@ class PackageManagerActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     return true
   }
 
-  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    when (item?.itemId) {
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
       android.R.id.home -> finish()
       R.id.action_source -> changeSource()
       R.id.action_update_and_refresh -> executeAptUpdate()
@@ -156,13 +148,13 @@ class PackageManagerActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     executeAptUpdate()
   }
 
-  private fun executeAptUpdate() = runApt("update -y", ) {
+  private fun executeAptUpdate() = runApt("update") {
     it.onSuccess { refreshPackageList() }
   }
 
-  private fun executeAptUpgrade() = runApt("update -y") { update ->
+  private fun executeAptUpgrade() = runApt("update") { update ->
     update.onSuccess {
-      runApt("upgrade -y", "-y") {
+      runApt("upgrade", "-y") {
         it.onSuccess { Toast.makeText(this, R.string.apt_upgrade_ok, Toast.LENGTH_SHORT).show() }
       }
     }
@@ -174,10 +166,12 @@ class PackageManagerActivity : AppCompatActivity(), SearchView.OnQueryTextListen
 
     pm.clearPackages()
     sourceFiles.forEach { pm.reloadPackages(it, false) }
-    models = pm.packages.values.map { PackageModel(it) }.toList()
+    models = pm.packages.values.map { PackageModel(it) }
+      .sortedBy { it.packageInfo.packageName }
+      .toList()
 
     this@PackageManagerActivity.runOnUiThread {
-      adapter.edit().replaceAll(models).commit()
+      adapter.submitList(models)
       if (models.isEmpty()) {
         Toast.makeText(this@PackageManagerActivity, R.string.package_list_empty, Toast.LENGTH_SHORT).show()
       }
@@ -205,22 +199,14 @@ class PackageManagerActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     return sortDistance(prepared, query) { it.packageName!! }
       .plus(sortDistance(prepared, query) { it.description!! })
       .map { it.first }
+      .distinctBy { it.packageInfo.packageName }
       .toList()
   }
 
   override fun onQueryTextSubmit(text: String?) = false
 
   override fun onQueryTextChange(text: String?): Boolean {
-    text?.let { adapter.edit().replaceAll(filter(models, it)).commit() }
+    text?.let { adapter.submitList(filter(models, it)) }
     return true
-  }
-
-  override fun onEditStarted() {
-    recyclerView.animate().alpha(0.5f)
-  }
-
-  override fun onEditFinished() {
-    recyclerView.scrollToPosition(0)
-    recyclerView.animate().alpha(1.0f)
   }
 }

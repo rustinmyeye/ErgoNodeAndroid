@@ -12,7 +12,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter
 import es.dmoral.coloromatic.ColorOMaticDialog
 import es.dmoral.coloromatic.IndicatorMode
 import es.dmoral.coloromatic.colormode.ColorMode
@@ -29,12 +28,6 @@ import io.neoterm.utils.Terminals
  * @author kiva
  */
 class ColorSchemeActivity : BaseCustomizeActivity() {
-  private val COMPARATOR = SortedListAdapter.ComparatorBuilder<ColorItem>()
-    .setOrderForModel(ColorItem::class.java) { a, b ->
-      a.colorType.compareTo(b.colorType)
-    }
-    .build()
-
   var changed = false
   private lateinit var editingColorScheme: NeoColorScheme
   lateinit var adapter: ColorItemAdapter
@@ -51,7 +44,7 @@ class ColorSchemeActivity : BaseCustomizeActivity() {
     val terminalView = findViewById<TerminalView>(R.id.terminal_view)
     Terminals.setupTerminalView(terminalView, null)
 
-    adapter = ColorItemAdapter(this, editingColorScheme, COMPARATOR, object : ColorItemAdapter.Listener {
+    adapter = ColorItemAdapter(this, editingColorScheme, object : ColorItemAdapter.Listener {
       override fun onModelClicked(model: ColorItem) {
         showItemEditor(model)
       }
@@ -67,8 +60,8 @@ class ColorSchemeActivity : BaseCustomizeActivity() {
     return true
   }
 
-  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    when (item?.itemId) {
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
       android.R.id.home -> finish()
       R.id.action_done -> applyColorScheme(editingColorScheme)
     }
