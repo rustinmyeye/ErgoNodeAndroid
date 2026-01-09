@@ -79,14 +79,6 @@ class AboutActivity : AppCompatActivity() {
       )
       notices.addNotice(
         Notice(
-          "ModularAdapter",
-          "https://wrdlbrnft.github.io/ModularAdapter",
-          "Copyright (c) 2017 Wrdlbrnft",
-          MITLicense()
-        )
-      )
-      notices.addNotice(
-        Notice(
           "RecyclerTabLayout",
           "https://github.com/nshmura/RecyclerTabLayout",
           "Copyright (C) 2017 nshmura",
@@ -99,14 +91,6 @@ class AboutActivity : AppCompatActivity() {
           "Copyright (c) 2016, Tim Malseed",
           "Copyright (c) 2016, Tim Malseed",
           ApacheSoftwareLicense20()
-        )
-      )
-      notices.addNotice(
-        Notice(
-          "SortedListAdapter",
-          "https://wrdlbrnft.github.io/SortedListAdapter/",
-          "Copyright (c) 2017 Wrdlbrnft",
-          MITLicense()
         )
       )
       notices.addNotice(
@@ -153,8 +137,8 @@ class AboutActivity : AppCompatActivity() {
     startActivity(intent)
   }
 
-  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    when (item?.itemId) {
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
       android.R.id.home ->
         finish()
     }

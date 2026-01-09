@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.net.wifi.WifiManager
 import android.os.Binder
 import android.os.Build
@@ -40,7 +41,13 @@ class NeoTermService : Service() {
   override fun onCreate() {
     super.onCreate()
     createNotificationChannel()
-    startForeground(NOTIFICATION_ID, createNotification())
+    
+    val notification = createNotification()
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+      startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
+    } else {
+      startForeground(NOTIFICATION_ID, notification)
+    }
   }
 
   override fun onBind(intent: Intent): IBinder? {
@@ -65,7 +72,12 @@ class NeoTermService : Service() {
   }
 
   override fun onDestroy() {
-    stopForeground(true)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      stopForeground(STOP_FOREGROUND_REMOVE)
+    } else {
+      @Suppress("DEPRECATION")
+      stopForeground(true)
+    }
 
     for (i in mTerminalSessions.indices)
       mTerminalSessions[i].finishIfRunning()
@@ -135,7 +147,12 @@ class NeoTermService : Service() {
   private fun createNotification(): Notification {
     val notifyIntent = Intent(this, NeoTermActivity::class.java)
     notifyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    val pendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0)
+    val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+      PendingIntent.FLAG_IMMUTABLE
+    } else {
+      0
+    }
+    val pendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, flags)
 
     val sessionCount = mTerminalSessions.size
     val xSessionCount = mXSessions.size
@@ -159,7 +176,7 @@ class NeoTermService : Service() {
     builder.addAction(
       android.R.drawable.ic_delete,
       getString(R.string.exit),
-      PendingIntent.getService(this, 0, exitIntent, 0)
+      PendingIntent.getService(this, 0, exitIntent, flags)
     )
 
     val newWakeAction = if (lockAcquired) ACTION_RELEASE_LOCK else ACTION_ACQUIRE_LOCK
@@ -171,7 +188,7 @@ class NeoTermService : Service() {
         R.string.service_acquire_lock
     )
     val actionIcon = if (lockAcquired) android.R.drawable.ic_lock_idle_lock else android.R.drawable.ic_lock_lock
-    builder.addAction(actionIcon, actionTitle, PendingIntent.getService(this, 0, toggleWakeLockIntent, 0))
+    builder.addAction(actionIcon, actionTitle, PendingIntent.getService(this, 0, toggleWakeLockIntent, flags))
 
     return builder.build()
   }

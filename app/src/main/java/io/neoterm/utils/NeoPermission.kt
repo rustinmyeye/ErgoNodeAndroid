@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -16,37 +17,30 @@ object NeoPermission {
   const val REQUEST_APP_PERMISSION = 10086
 
   fun initAppPermission(context: AppCompatActivity, requestCode: Int) {
-    if (ContextCompat.checkSelfPermission(
-        context,
-        Manifest.permission.READ_EXTERNAL_STORAGE
-      )
-      != PackageManager.PERMISSION_GRANTED
-    ) {
+    val permissions = ArrayList<String>()
+    
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            permissions.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
 
-      if (ActivityCompat.shouldShowRequestPermissionRationale(
-          context,
-          Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-      ) {
-        AlertDialog.Builder(context).setMessage("需要存储权限来访问存储设备上的文件")
-          .setPositiveButton(android.R.string.ok, { _: DialogInterface, _: Int ->
-            doRequestPermission(context, requestCode)
-          })
-          .show()
+    // On Android 13+ (API 33), READ_EXTERNAL_STORAGE is deprecated and always denied.
+    // We only request it for older versions.
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+    }
 
-      } else {
-        doRequestPermission(context, requestCode)
-      }
+    if (permissions.isNotEmpty()) {
+      doRequestPermission(context, permissions.toTypedArray(), requestCode)
     }
   }
 
-  private fun doRequestPermission(context: AppCompatActivity, requestCode: Int) {
+  private fun doRequestPermission(context: AppCompatActivity, permissions: Array<String>, requestCode: Int) {
     try {
-      ActivityCompat.requestPermissions(
-        context,
-        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-        requestCode
-      )
+      ActivityCompat.requestPermissions(context, permissions, requestCode)
     } catch (ignore: ActivityNotFoundException) {
       // for MIUI, we ignore it.
     }

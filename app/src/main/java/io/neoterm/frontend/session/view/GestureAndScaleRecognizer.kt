@@ -38,11 +38,11 @@ internal class GestureAndScaleRecognizer(context: Context, val mListener: Listen
   init {
 
     mGestureDetector = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
-      override fun onScroll(e1: MotionEvent, e2: MotionEvent, dx: Float, dy: Float): Boolean {
+      override fun onScroll(e1: MotionEvent?, e2: MotionEvent, dx: Float, dy: Float): Boolean {
         return mListener.onScroll(e2, dx, dy)
       }
 
-      override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+      override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
         return mListener.onFling(e2, velocityX, velocityY)
       }
 

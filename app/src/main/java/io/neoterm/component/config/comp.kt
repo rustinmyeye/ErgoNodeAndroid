@@ -114,7 +114,7 @@ object NeoPreference {
     return loadInt(App.get().getString(key), defaultValue)
   }
 
-  fun loadString(key: Int, defaultValue: String?): String {
+  fun loadString(key: Int, defaultValue: String?): String? {
     return loadString(App.get().getString(key), defaultValue)
   }
 
@@ -126,7 +126,7 @@ object NeoPreference {
     return preference!!.getInt(key, defaultValue)
   }
 
-  fun loadString(key: String?, defaultValue: String?): String {
+  fun loadString(key: String?, defaultValue: String?): String? {
     return preference!!.getString(key, defaultValue)
   }
 
@@ -161,7 +161,7 @@ object NeoPreference {
   }
 
   fun getLoginShellName(): String {
-    return loadString(R.string.key_general_shell, DefaultValues.loginShell)
+    return loadString(R.string.key_general_shell, DefaultValues.loginShell) ?: DefaultValues.loginShell
   }
 
   fun getLoginShellPath(): String {
@@ -216,7 +216,7 @@ object NeoPreference {
     return loadString(
       R.string.key_general_initial_command,
       DefaultValues.initialCommand
-    )
+    ) ?: DefaultValues.initialCommand
   }
 
   fun isBellEnabled(): Boolean {

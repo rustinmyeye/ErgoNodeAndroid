@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.*
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
@@ -70,18 +71,9 @@ class NeoTermActivity : AppCompatActivity(), ServiceConnection, SharedPreference
       )
     }
 
-    val SDCARD_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1
-    if (ContextCompat.checkSelfPermission(
-        this,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-      ) != PackageManager.PERMISSION_GRANTED
-    ) {
-      ActivityCompat.requestPermissions(
-        this,
-        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-        SDCARD_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE
-      )
-    }
+    // Storage permissions are handled in NeoPermission.initAppPermission
+    // for older Android versions. On Android 13+, shared storage requires
+    // different permissions or All Files Access which we don't force here.
 
     setContentView(R.layout.ui_main)
 
@@ -153,8 +145,8 @@ class NeoTermActivity : AppCompatActivity(), ServiceConnection, SharedPreference
     return true
   }
 
-  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    return when (item?.itemId) {
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    return when (item.itemId) {
       R.id.menu_item_settings -> {
         startActivity(Intent(this, SettingActivity::class.java))
         true
@@ -296,15 +288,7 @@ class NeoTermActivity : AppCompatActivity(), ServiceConnection, SharedPreference
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     when (requestCode) {
       NeoPermission.REQUEST_APP_PERMISSION -> {
-        if (grantResults.isEmpty()
-          || grantResults[0] != PackageManager.PERMISSION_GRANTED
-        ) {
-          AlertDialog.Builder(this).setMessage(R.string.permission_denied)
-            .setPositiveButton(android.R.string.ok, { _: DialogInterface, _: Int ->
-              finish()
-            })
-            .show()
-        }
+        // We no longer exit the app if optional permissions like notifications are denied.
         return
       }
     }
