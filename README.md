@@ -1,4 +1,6 @@
 # Don't Use This Right Now, Totally Broken atm
+
+Termux is the best way to run a node on Android, and not hard at all: https://docs.ergoplatform.com/node/install/node-android/proot-rocksdb/
 ---
 # Ergo Node for Android  
 
