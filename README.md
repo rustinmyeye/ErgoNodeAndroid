@@ -1,3 +1,5 @@
+# Don't Use This Right Now, Totally Broken atm
+---
 # Ergo Node for Android  
 
 Setup instructions [here](https://github.com/rustinmyeye/ErgoNodeAndroid/blob/master/SETUP_INSTRUCTIONS.md)
